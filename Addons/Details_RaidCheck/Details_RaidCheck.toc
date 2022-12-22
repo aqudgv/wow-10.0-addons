@@ -1,0 +1,7 @@
+## Interface: 100002
+## Title: Details!: Raid Check (plugin)
+## Notes: Show talents and item level for all members in your group, also shows food and flask state.
+## RequiredDeps: Details
+## X-Revision: BigFoot
+
+Details_RaidCheck.lua

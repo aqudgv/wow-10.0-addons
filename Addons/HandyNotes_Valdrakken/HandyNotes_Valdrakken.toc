@@ -1,0 +1,26 @@
+## Interface: 100002
+## Title: HandyNotes: Valdrakken
+## Title-zhCN: [大脚][集]地图标记_主城NPC(DF)
+## Title-zhTW: [大腳][集]地圖標記_主城NPC(DF)
+## Notes: Shows the NPC and POI locations in Valdrakken.
+## Notes-zhCN: |cff00ff00HandyNotes_Valdrakken|r
+## Notes-zhTW: |cff00ff00HandyNotes_Valdrakken|r
+## Author: |cFFFF8C00Dathwada EU-Eredar|r
+## Version: v1
+## RequiredDeps: HandyNotes
+## SavedVariables: HandyNotes_ValdrakkenDB
+## X-Date: 2022-11-28
+## X-Category: Map
+## X-Revision: BigFoot
+
+# LOCALIZATION FILES
+localization\locales.xml
+
+# CORE FILES
+core\constants.lua
+core\handler.lua
+core\config.lua
+core\dev.lua
+
+# DATABASE
+data\DB.lua

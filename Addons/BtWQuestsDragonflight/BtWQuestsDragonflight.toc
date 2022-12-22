@@ -1,0 +1,50 @@
+## Interface: 100002
+## Title: BtWQuests: Dragonflight
+## Title-zhCN: [大脚][集]可接任务_巨龙时代
+## Title-zhTW: [大腳][集]可接任务_巨龙时代
+## Version: 1.3
+## Notes: Dragonflight quest data for BtWQuests
+## Notes-zhCN: |cff00ff00BtWQuestsDragonflight|r
+## Notes-zhTW: |cff00ff00BtWQuestsDragonflight|r
+## Author: Breen
+## Dependencies: BtWQuests
+## OptionalDeps: BtWQuestsDragonflightPrologue
+## LoadOnDemand: 1
+## X-BtWQuests: Dragonflight
+## X-BtWQuests-Expansion: 9
+## X-BtWQuests-Expansion-Image: UI-Expansion 0 0.90625 0 0.8125
+## X-BtWQuests-AutoLoad: 1
+## X-Part-Of: BtWQuests
+## X-Curse-Project-ID: 652343
+## X-WoWI-ID: 26399
+## X-Wago-ID: Xb6XkoNp
+## X-Revision: BigFoot
+
+Defines.lua
+
+Localization.lua
+Localization.zhCN.lua
+Localization.zhTW.lua
+
+Database/Quests.lua
+Database/Quests.zhCN.lua
+Database/Quests.zhTW.lua
+
+Database/NPCs.lua
+Database/NPCs.zhCN.lua
+Database/NPCs.zhTW.lua
+
+Database/Objects.lua
+Database/Objects.zhCN.lua
+Database/Objects.zhTW.lua
+
+Database/Index.enUS.lua
+Database/Index.zhCN.lua
+Database/Index.zhTW.lua
+
+General.lua
+FriendOfTheDragonIsles.lua
+TheWakingShores.lua
+OhnahranPlains.lua
+TheAzureSpan.lua
+Thaldraszus.lua
