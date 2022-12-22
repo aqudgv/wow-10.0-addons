@@ -1,4 +1,4 @@
-local rawset = rawset
+﻿local rawset = rawset
 local tostring = tostring
 
 local L = setmetatable({ }, {__index = function(t, k)
@@ -1801,6 +1801,14 @@ elseif locale == "ruRU" then
 	L["Widget settings"] = "Настройки виджета"
 	L["Windwalker:short"] = "Танцсв"
 elseif locale == "zhCN" then
+	L["Up"] = "上"
+	L["Down"] = "下"		 
+	L["Left"] = "左" 
+	L["Right"] = "右"
+	L["The Direction you want the frame to go in."] = "设置你想要框架扩展的方向"
+	L["Gladius Anchor - click to move"] = "竞技场头像 - 按住拖动, 右键设置, 中键隐藏"
+	L["If this is toggle buttons can be moved separately"] = "勾选后按钮可以分别移动"
+	--------------------------------------
 	L["Frame"] = "框体"
 	L["Welcome to Gladius!"] = "欢迎使用Gladius!"
 	L["First run has been detected displaying test frame."] = "侦测到为第一次使用，显示测试框架。"
@@ -1913,6 +1921,7 @@ elseif locale == "zhCN" then
 	L["Auras Buffs"] = "增益光环"
 	L["Toggle aura buffs"] = "切换增益光环"
 	L["Auras Column Grow"] = "光环列延伸"
+	L["Direction"] = "方向"  
 	L["Grow direction of the auras"] = "光环的延伸方向"
 	L["Up Left"] = "左上"
 	L["Up Right"] = "右上"
@@ -2392,7 +2401,7 @@ elseif locale == "zhCN" then
 	L["Mistweaver:short"] = "织雾"
 	L["Windwalker:short"] = "踏风"
 	L["Warrior:short"] = "战"
-	L["Death Knight:short"] = "死"
+	L["Death Knight:short"] = "死骑"
 	L["Warlock:short"] = "术"
 	L["Priest:short"] = "牧"
 	L["Hunter:short"] = "猎"
@@ -2401,7 +2410,7 @@ elseif locale == "zhCN" then
 	L["Druid:short"] = "德"
 	L["Paladin:short"] = "圣"
 	L["Mage:short"] = "法"
-	L["Monk:short"] = "僧"
+	L["Monk:short"] = "武僧"
 elseif locale == "zhTW" then
 	L["Frame"] = "框體"
 	L["Welcome to Gladius!"] = "歡迎使用Gladius!"

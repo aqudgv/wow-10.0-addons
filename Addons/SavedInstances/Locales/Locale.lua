@@ -17,9 +17,9 @@ L = setmetatable(L, {
   __index = function(t, s)
     if not localeWarning and url and Ld[s] and not La[s] and locale ~= 'enUS' then
       localeWarning = true
-      print(format("*** SavedInstances needs help translating to your language! (%s)", locale))
-      print("*** If you speak English, you can contribute by visiting:")
-      print("*** " .. url)
+      -- print(format("*** SavedInstances needs help translating to your language! (%s)", locale))
+      -- print("*** If you speak English, you can contribute by visiting:")
+      -- print("*** " .. url)
     end
     return La[s] or Ld[s] or rawget(t,s) or s
   end

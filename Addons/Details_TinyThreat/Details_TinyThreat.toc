@@ -3,17 +3,8 @@
 ## Notes: Threat meter plugin, show threat for group members in the window. Select it from the Plugin menu in the Orange Cogwheel.
 ## RequiredDeps: Details
 ## OptionalDeps: Ace3
-
-#@no-lib-strip@
-embeds.xml
-#@end-no-lib-strip@
+## X-Revision: BigFoot
 
 enUS.lua
-ptBR.lua
 
 Details_TinyThreat.lua
-
-## Title: |cff880303[163UI]|r Details_TinyThreat
-## Title-zhCN: |cff880303[有爱]|r Details 仇恨模块
-## X-Vendor: NetEase
-## X-163UI-Version: 20221128165246

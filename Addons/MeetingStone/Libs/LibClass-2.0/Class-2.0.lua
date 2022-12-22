@@ -177,7 +177,6 @@ local _UIBaseClass = setmetatable(Class._UIBaseClass, {
     __index = function(t, k)
         local ok, class = pcall(CreateFrame, k)
         if ok then
-			local ui = k == "scrollframe" and "ScrollFrame" or class:GetObjectType()
             class._Meta = {__index = class, __type = class, __ui = k}
             class:Hide()
             class.Constructor = DefaultConstructor

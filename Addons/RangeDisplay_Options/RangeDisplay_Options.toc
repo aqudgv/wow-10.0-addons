@@ -1,19 +1,16 @@
 ## Interface: 100002
 ## Title: RangeDisplay Options
+## Title-zhCN: [大脚][集]距离显示_设置
+## Title-zhTW: [大腳][集]距離顯示_设置
 ## Author: mitch0
-## Version: v5.0.4
+## Version: v5.0.1
 ## Notes: Configuration options for RangeDisplay
-## OptionalDeps: AceGUI-3.0-SharedMediaWidgets
+## Notes-zhCN: |cff00ff00RangeDisplay_Options|r
+## Notes-zhTW: |cff00ff00RangeDisplay_Options|r
 ## Dependencies: RangeDisplay
 ## LoadOnDemand: 1
-## X-License: Public Domain
 ## X-RelSite-WoWI: 7297
+## X-Revision: BigFoot
+
 localizations.lua
 Options.lua
-
-## Title: |cff880303[163UI]|r RangeDisplay_Options
-## Title-zhCN: |cff880303[有爱]|r RangeDis 距离显示设置
-## Notes-zhCN: 距离显示设置模块
-## Notes-zhTW: 目標距離 設置模組
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401

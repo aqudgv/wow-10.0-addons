@@ -44,7 +44,7 @@ Data.defaultSettings = {
 			MiddleButtonValue = "",
 
 			["5"] = {
-				Enabled = true,
+				Enabled = false,
 
 				Position_X = false,
 				Position_Y = false,
@@ -383,7 +383,7 @@ Data.defaultSettings = {
 				-- NegativeSound = [[Sound\Interface\UI_BattlegroundCountdown_Timer.ogg]],
 			},
 			["40"] = {
-				Enabled = true,
+				Enabled = false,
 
 				Position_X = false,
 				Position_Y = false,
@@ -534,7 +534,7 @@ Data.defaultSettings = {
 
 		},
 		Allies = {
-			Enabled = true,
+			Enabled = false,
 
 			RangeIndicator_Enabled = true,
 			RangeIndicator_Range = 34471,
@@ -889,7 +889,7 @@ Data.defaultSettings = {
 				-- NegativeSound = [[Sound\Interface\UI_BattlegroundCountdown_Timer.ogg]],
 			},
 			["40"] = {
-				Enabled = true,
+				Enabled = false,
 
 				Position_X = false,
 				Position_Y = false,

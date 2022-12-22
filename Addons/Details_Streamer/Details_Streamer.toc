@@ -3,14 +3,6 @@
 ## Notes: Show which spells you are casting, viewers can see what are you doing and follow your steps.
 ## RequiredDeps: Details
 ## SavedVariables: Details_StreamerDB
-
-#@no-lib-strip@
-embeds.xml
-#@end-no-lib-strip@
+## X-Revision: BigFoot
 
 Details_Streamer.lua
-
-## Title: |cff880303[163UI]|r Details_Streamer
-## Title-zhCN: |cff880303[有爱]|r Details Streamer模块
-## X-Vendor: NetEase
-## X-163UI-Version: 20221128165246

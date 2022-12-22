@@ -16,9 +16,6 @@ function MainPanel:OnInitialize()
     self:SetScript('OnDragStart', self.StartMoving)
     self:SetScript('OnDragStop', self.StopMovingOrSizing)
     self:SetClampedToScreen(true)
-    _G.MeetingStoneMainPanel = self;
-    tinsert(UISpecialFrames, "MeetingStoneMainPanel");
-    self:RegisterEvent("PLAYER_REGEN_DISABLED");
 
     self:HookScript('OnShow', function()
         C_LFGList.RequestAvailableActivities()
@@ -29,8 +26,6 @@ function MainPanel:OnInitialize()
     self:RegisterMessage('MEETINGSTONE_NEW_VERSION')
     self:RegisterEvent('AJ_PVE_LFG_ACTION')
     self:RegisterEvent('AJ_PVP_LFG_ACTION', 'AJ_PVE_LFG_ACTION')
-
-    self.CloseButton:SetScript("OnClick", function() self:Hide(); end)
 
     PVEFrame:UnregisterEvent('AJ_PVE_LFG_ACTION')
     PVEFrame:UnregisterEvent('AJ_PVP_LFG_ACTION')
@@ -321,28 +316,11 @@ function MainPanel:OpenActivityTooltip(activity, tooltip)
     if activity:GetLeader() then
         tooltip:AddLine(format(LFG_LIST_TOOLTIP_LEADER, activity:GetLeaderText()))
 
-		--abyui
-        if activity:IsRatedPvpActivity() then
-            local pvpInfo = activity:GetLeaderPvpRatingInfo()
-            if pvpInfo then
-                tooltip:AddLine(PVP_RATING_GROUP_FINDER:format(pvpInfo.activityName, pvpInfo.rating, PVPUtil.GetTierName(pvpInfo.tier)));
-            end
-        else
-            local score = activity:GetLeaderScore() or 0
-            if score > 0 then
-                local color = C_ChallengeMode.GetDungeonScoreRarityColor(score) or HIGHLIGHT_FONT_COLOR
-                tooltip:AddLine(format(L['队长大秘评分：%s'], color:WrapTextInColorCode(score)))
-                local info = activity:GetLeaderScoreInfo()
-                if info and info.mapScore and info.mapScore > 0 then
-                    local color = C_ChallengeMode.GetSpecificDungeonOverallScoreRarityColor(info.mapScore) or HIGHLIGHT_FONT_COLOR
-                    local levelText = format(info.finishedSuccess and "|cff00ff00%d层|r" or "|cff7f7f7f%d层|r", info.bestRunLevel or 0)
-                    tooltip:AddLine(format("队长当前副本: %s / %s", color:WrapTextInColorCode(info.mapScore), levelText))
-                else
-                    tooltip:AddLine(format("队长当前副本: |cff7f7f7f 无信息|r"))
-                end
-            end
+        tooltip:AddLine(format(L["队长大秘评分：|cffffffff%d|r"], activity:GetLeaderScore()))
+        local leaderScoreInfo = activity:GetLeaderScoreInfo()
+        if leaderScoreInfo then
+            tooltip:AddLine(format("队长当前副本: |cffffffff%d/%d层|r", leaderScoreInfo.mapScore or 0, leaderScoreInfo.bestRunLevel or 0))
         end
-
         if activity:GetLeaderItemLevel() then
             tooltip:AddLine(format(L['队长物品等级：|cffffffff%s|r'], activity:GetLeaderItemLevel()))
         end
@@ -352,13 +330,9 @@ function MainPanel:OpenActivityTooltip(activity, tooltip)
         if activity:GetLeaderPvPRating() then
             tooltip:AddLine(format(L['队长PvP 等级：|cffffffff%s|r'], activity:GetLeaderPvPRating()))
         end
-
         tooltip:AddSepatator()
     end
 
-    if activity:GetCrossFactionListing() then
-        tooltip:AddLine(L["|cff00ff00跨阵营队伍|r"])
-    end
     if activity:GetItemLevel() > 0 then
         tooltip:AddLine(format(LFG_LIST_TOOLTIP_ILVL, activity:GetItemLevel()))
     end
@@ -466,8 +440,6 @@ function MainPanel:OpenActivityTooltip(activity, tooltip)
     tooltip:Show()
 end
 
-local FACTION_STRINGS = { [0] = '|cff00ff00' .. FACTION_HORDE .. '|r', [1] = '|cff00ff00' .. FACTION_ALLIANCE .. '|r'};
-
 function MainPanel:OpenApplicantTooltip(applicant)
     local GameTooltip = self.GameTooltip
     local name = applicant:GetName()
@@ -475,11 +447,8 @@ function MainPanel:OpenApplicantTooltip(applicant)
     local level = applicant:GetLevel()
     local localizedClass = applicant:GetLocalizedClass()
     local itemLevel = applicant:GetItemLevel()
-    local pvpItemLevel = applicant:GetPVPItemLevel()
     local comment = applicant:GetMsg()
     local useHonorLevel = applicant:IsUseHonorLevel()
-    local factionGroup = applicant:GetFactionGroup()
-    local raceID = applicant:GetRaceID()
 
     GameTooltip:SetOwner(self, 'ANCHOR_NONE')
     GameTooltip:SetPoint('TOPLEFT', self, 'TOPRIGHT', 0, 0)
@@ -487,40 +456,21 @@ function MainPanel:OpenApplicantTooltip(applicant)
     if name then
         local classTextColor = RAID_CLASS_COLORS[class]
         GameTooltip:AddHeader(name, classTextColor.r, classTextColor.g, classTextColor.b)
-        if(UnitFactionGroup("player") ~= PLAYER_FACTION_GROUP[factionGroup]) then
-            GameTooltip:AddLine(string.format(UNIT_TYPE_LEVEL_FACTION_TEMPLATE, level, localizedClass, FACTION_STRINGS[factionGroup]));
-        else
-            GameTooltip:AddLine(string.format(UNIT_TYPE_LEVEL_TEMPLATE, level, localizedClass), 1, 1, 1)
-        end
-
+        GameTooltip:AddLine(string.format(UNIT_TYPE_LEVEL_TEMPLATE, level, localizedClass), 1, 1, 1)
     else
         GameTooltip:AddHeader(UnitName('none'), NORMAL_FONT_COLOR.r, NORMAL_FONT_COLOR.g, NORMAL_FONT_COLOR.b)
     end
     GameTooltip:AddLine(string.format(LFG_LIST_ITEM_LEVEL_CURRENT, itemLevel), 1, 1, 1)
-    if itemLevel ~= pvpItemLevel then
-        GameTooltip:AddLine(string.format(LFG_LIST_ITEM_LEVEL_CURRENT_PVP, pvpItemLevel), 1, 1, 1)
-    end
 
     if useHonorLevel then
         GameTooltip:AddLine(string.format(LFG_LIST_HONOR_LEVEL_CURRENT_PVP, applicant:GetHonorLevel()), 1, 1, 1)
     end
 
-    local pvpInfo = applicant:GetPVPRatingBlizzard()
-    if pvpInfo and pvpInfo.rating then
-        GameTooltip:AddLine(PVP_RATING_GROUP_FINDER:format(pvpInfo.activityName, pvpInfo.rating, PVPUtil.GetTierName(pvpInfo.tier)));
-    end
-    local score = applicant:GetDungeonScore() or 0
-    if score > 0 then
-        local color = C_ChallengeMode.GetDungeonScoreRarityColor(score) or HIGHLIGHT_FONT_COLOR
-        GameTooltip:AddLine(format(L['大秘评分：%s'], color:WrapTextInColorCode(score)))
-        local info = applicant:GetBestDungeonScore()
-        if info and info.mapScore and info.mapScore > 0 then
-            local color = C_ChallengeMode.GetSpecificDungeonOverallScoreRarityColor(info.mapScore) or HIGHLIGHT_FONT_COLOR
-            local levelText = format(info.finishedSuccess and "|cff00ff00%d层|r" or "|cff7f7f7f%d层|r", info.bestRunLevel or 0)
-            GameTooltip:AddLine(format("当前副本: %s / %s", color:WrapTextInColorCode(info.mapScore), levelText))
-        else
-            GameTooltip:AddLine(format("当前副本: |cff7f7f7f 无信息|r"))
-        end
+    local score = applicant:GetDungeonScore()
+    GameTooltip:AddLine(format(L['大秘评分：|cffffffff%s|r'], score), 1, 1, 1)
+    local info = applicant:GetBestDungeonScore()
+    if info and info.mapScore and info.mapScore > 0 then
+        GameTooltip:AddLine(format("当前副本: |cffffffff%d/%d层|r ", info.mapScore, info.bestRunLevel or 0), 1, 1, 1)
     end
 
     if comment and comment ~= '' then
@@ -564,9 +514,6 @@ function MainPanel:OpenApplicantTooltip(applicant)
             GameTooltip:AddDoubleLine(v.name, GetProgressionTex(progressionValue, i), 1, 1, 1)
         end
     end
-    if raceID and C_CreatureInfo.GetRaceInfo(raceID) then
-        GameTooltip:AddLine((RACE or "") .. ": " .. C_CreatureInfo.GetRaceInfo(raceID).raceName, 1, 1, 1)
-    end
     GameTooltip:Show()
 end
 
@@ -584,8 +531,4 @@ function MainPanel:OpenRecentPlayerTooltip(player)
     tooltip:AddLine(player:GetNameText())
     tooltip:AddLine(player:GetNotes(), 1, 1, 1, true)
     tooltip:Show()
-end
-
-function MainPanel:PLAYER_REGEN_DISABLED()
-    self:Hide();
 end

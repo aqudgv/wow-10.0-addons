@@ -1,26 +1,16 @@
-## Interface: 100002
+﻿## Interface: 100002
 ## Title: BlizzMove
-## Notes: Makes blizzard frames movable
-## Author: Kiatra, zaCade, Numy - github.com/Kiatra/BlizzMove/
-## X-WoWI-ID: 23875
-## X-Curse-Project-ID: 17809
-## Version: v3.5.7
-## OptionalDeps: Ace3
-## X-Embeds: Ace3
-## SavedVariables: BlizzMoveDB
+## Title-zhCN: [大脚][集]窗体移动
+## Title-zhTW: [大腳][集]窗體移動
+## Notes: |cffbc8f8fMove those blizzard windows.|r
+## Notes-zhCN: |cff00ff00BlizzMove|r|n|cffbc8f8f移动系统各种默认窗体。|r
+## Notes-zhTW: |cff00ff00BlizzMove|r|n|cffbc8f8f移動系統各種默認窗體。|r
+## Author: yess
+## Version: v1.2.2
+## SavedVariablesPerCharacter: BlizzMoveDB
+## Dependencies: BigFoot
+## X-Revision: BigFoot
+## LoadOnDemand: 1
 
-# Libraries
-Libs\Libs.xml
-TaintLess.xml
+Blizzmove.lua
 
-# Add-On
-BlizzMove.lua
-BlizzMoveAPI.lua
-BlizzMoveConfig.lua
-Frames.lua
-
-## Title: |cff880303[163UI]|r BlizzMove
-## Title-zhCN: |cff880303[有爱]|r BlizzMove 框架移动
-## Notes-zhCN: 方便快捷的移动游戏内某些原生的框体.比如游戏原生头像框体.
-## X-Vendor: NetEase
-## X-163UI-Version: 20221208164536

@@ -161,7 +161,7 @@ function AppSupport:DataInit()
         if not name then
             return
         end
-        return quality == LE_ITEM_QUALITY_LEGENDARY and itemLevel >= 940 and IsEquippableItem(item) and item
+        return quality == Enum.ItemQuality.Legendary and IsEquippableItem(item) and item
     end
 
     RegisterData('Zone', {'ZONE_CHANGED_NEW_AREA', 'ZONE_CHANGED_INDOORS', 'ZONE_CHANGED'}, GetZoneText, COMMIT_INTERVAL)

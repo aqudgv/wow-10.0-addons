@@ -1,18 +1,29 @@
 ## Interface: 100002
 ## Title: Master Plan
+## Title-zhCN: [大脚][集]要塞助手
+## Title-zhTW: [大腳][集]要塞助手
 ## Version: 0.129
 ## Author: foxlit
 ## Notes: Garrison missions UI tweaks.
+## Notes-zhCN: |cff00ff00MasterPlan|r
+## Notes-zhTW: |cff00ff00MasterPlan|r
 ## X-Website: https://www.townlong-yak.com/addons/master-plan/
-## License: All rights reserved. Do not redistribute, in whole or in part, without explicit prior permission from the author.
 ## LoadOnDemand: 1
-## RequiredDeps: Blizzard_GarrisonUI, MasterPlanA
+## RequiredDeps: Blizzard_GarrisonUI
+## SavedVariables: MasterPlanAG
 ## SavedVariablesPerCharacter: MasterPlanPC
+## Dependencies: BigFoot
+## X-Revision: BigFoot
+
 Libs/Evie.lua
+PlanA\PlanA.lua
 Libs/Ten.lua
 Libs/Reframe.lua
+
 Locale.lua
+
 Mark-50.lua
+
 GarrisonAPI-Data.lua
 GarrisonAPI.lua
 MasterPlan.lua
@@ -24,10 +35,3 @@ ShipMoI.lua
 LandingCache.lua
 LandingFleet.lua
 LandingAlts.lua
-## Title: |cff880303[163UI]|r MasterPlan
-## Title-zhCN: |cff880303[有爱]|r MasterPlan 要塞任务大师
-## Title-zhTW: |cff880303[有爱]|r MasterPlan 要塞任務大師
-## Notes-zhCN: 修改并简化追随者任务面板的操作
-## Notes-zhTW: 修改并簡化追隨者任務面板的操作
-## X-Vendor: NetEase
-## X-163UI-Version: 20221208164536

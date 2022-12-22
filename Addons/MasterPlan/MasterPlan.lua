@@ -42,14 +42,14 @@ function EV:ADDON_LOADED(addon)
 		MasterPlanPC, conf.ignore, conf.rIgnore = conf, next(conf.ignore) and conf.ignore, next(conf.rIgnore) and conf.rIgnore
 		conf.complete = securecall(T._GetMissionSeenTable)
 	end
-	
+
 	local pc
 	if type(MasterPlanPC) == "table" then
 		pc, MasterPlanPC = MasterPlanPC
 	else
 		pc = {}
 	end
-	
+
 	for k,v in pairs(pc) do
 		local tv = type(v)
 		if k == "ignore" and tv == "table" then
@@ -59,7 +59,7 @@ function EV:ADDON_LOADED(addon)
 		elseif k == "rIgnore" and tv == "table" then
 			local gt = MasterPlanAG.IgnoreRewards
 			for k,v in pairs(v) do
-				if type(k) == "string" and type(v) == "boolean" and (gt[k] ~= v) then
+				if type(k) == "string" and type(v) == "boolean" and (gt and gt[k] ~= v) then
 					conf.rIgnore[k] = v
 				end
 			end
@@ -70,7 +70,7 @@ function EV:ADDON_LOADED(addon)
 	T._SetMissionSeenTable(pc.complete)
 	conf.version = GetAddOnMetadata(addonName, "Version")
 	EV("MP_SETTINGS_CHANGED")
-	
+
 	return "remove"
 end
 do -- Completion stats

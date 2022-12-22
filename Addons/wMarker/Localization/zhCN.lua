@@ -9,9 +9,9 @@ local Language = GetLocale()
 
 if (Language=="zhCN") then
 
-wMarkerLocales = {}
+wMarkerLocals = {}
 
-wMarkerLocales = {
+wMarkerLocals = {
 
 -- Icons
 ["Skull"] = "骷髅",

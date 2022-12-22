@@ -1,9 +1,8 @@
 ## Interface: 100002
 ## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Uldir|r
-## Title-deDE:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Uldir|r
-## Title-koKR:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0울디르|r
-## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0奧迪爾|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Ульдир|r
+## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r BFA-奥迪尔
+## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r BFA-奧迪爾
+## Notes:|cff00ff00DBM-Uldir|r
 ## Author: MysticalOS
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
@@ -17,9 +16,12 @@
 ## X-DBM-Mod-MapID: 1861
 ## X-DBM-Mod-MinCoreRevision: 17286
 ## X-DBM-Mod-MinExpansion: 7
+## X-Revision: BigFoot
+
 localization.en.lua
 localization.cn.lua
 localization.tw.lua
+
 Taloc.lua
 Mother.lua
 FetidDevourer.lua
@@ -29,6 +31,3 @@ Zul.lua
 Mythrax.lua
 Ghuun.lua
 UldirTrash.lua
-
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401

@@ -232,7 +232,7 @@ function Racial:CreateFrame(unit)
 
 	-- secure
 	local secure = CreateFrame("Button", "Gladius"..self.name.."SecureButton"..unit, button, "SecureActionButtonTemplate")
-	secure:RegisterForClicks("AnyUp")
+	secure:RegisterForClicks("AnyUp", "AnyDown")
 	self.frame[unit].secure = secure
 end
 
@@ -343,6 +343,9 @@ end
 function Racial:Show(unit)
 	local testing = Gladius.test
 	-- show frame
+	if not self.frame[unit] then
+		return;
+	end
 	self.frame[unit]:SetAlpha(1)
 	local RacialIcon = GetSpellTexture(unitRaceCDs["SCOURGE"].spellID)
 	if testing then

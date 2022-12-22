@@ -319,7 +319,7 @@ function TargetBar:Update(unit)
 	end
 	self:UpdateColors(unit)
 	-- update secure frame
-	self.frame[unit].secure:RegisterForClicks("AnyUp")
+	self.frame[unit].secure:RegisterForClicks("AnyUp", "AnyDown")
 	self.frame[unit].secure:SetAllPoints(self.frame[unit].frame)
 	self.frame[unit].secure:SetWidth(self.frame[unit].frame:GetWidth())
 	self.frame[unit].secure:SetHeight(self.frame[unit].frame:GetHeight())

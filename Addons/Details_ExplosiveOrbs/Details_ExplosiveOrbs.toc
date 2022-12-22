@@ -3,18 +3,13 @@
 ## Notes: Show how many explosive orbs players target and hit.
 ## RequiredDeps: Details
 ## Author: LiangYuxuan
-## Version: v9.1.0
+## Version: v10.0.2
 ## SavedVariablesPerCharacter: ExplosiveOrbsLog
-## X-License: MIT
 ## X-Curse-Project-ID: 352367
 ## X-WoWI-ID: 25932
 ## X-Wago-ID: ZQ6aXANW
-
-Libs\Load_Libs.xml
+## X-Revision: BigFoot
 
 Locale.lua
-Core.lua
 
-## Title-zhCN: |cff880303[有爱]|r Detail 易爆球模块
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401
+Core.lua

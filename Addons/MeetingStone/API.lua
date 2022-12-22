@@ -4,6 +4,8 @@ local memorize = require('NetEaseMemorize-1.0')
 local nepy = require('NetEasePinyin-1.0')
 local Base64 = LibStub('NetEaseBase64-1.0')
 local AceSerializer = LibStub('AceSerializer-3.0')
+local GetContainerNumSlots = GetContainerNumSlots or C_Container.GetContainerNumSlots
+local GetContainerItemID = GetContainerItemID or C_Container.GetContainerItemID
 
 function GetClassColorText(className, text)
     local color = RAID_CLASS_COLORS[className]
@@ -337,8 +339,8 @@ end
 
 function PlayerHasItem(id)
     for i = -3, 11 do
-        for j = 1, C_Container.GetContainerNumSlots(i) do
-            if C_Container.GetContainerItemID(i, j) == id then
+        for j = 1, GetContainerNumSlots(i) do
+            if GetContainerItemID(i, j) == id then
                 return true
             end
         end
@@ -379,14 +381,6 @@ function IterateGroupUnits()
 end
 
 function GetAddonSource()
-    for line in gmatch(
-                    '\066\105\103\070\111\111\116\058\049\010\033\033\033\049\054\051\085\073\033\033\033\058\050\010\068\117\111\119\097\110\058\052\010\069\108\118\085\073\058\056',
-                    '[^\r\n]+') do
-        local n, v = line:match('^(.+):(%d+)$')
-        if IsAddOnLoaded(n) then
-            return tonumber(v)
-        end
-    end
     return 0
 end
 
@@ -481,19 +475,5 @@ function ApplyUrlButton(button, url)
     else
         button:SetScript('OnClick', nil)
         button.url = nil
-    end
-end
-
-function C_LFGList.GetCategoryInfo(categoryID)
-    local categoryInfo = C_LFGList.GetLfgCategoryInfo(categoryID);
-    if categoryInfo then
-        return categoryInfo.name, categoryInfo.separateRecommended, categoryInfo.autoChooseActivity, categoryInfo.preferCurrentArea, categoryInfo.showPlaystyleDropdown;
-    end
-end
-
-function C_LFGList.GetActivityInfo(activityID, questID, showWarmode)
-    local activityInfo = C_LFGList.GetActivityInfoTable(activityID, questID, showWarmode);
-    if activityInfo then
-        return activityInfo.fullName, activityInfo.shortName, activityInfo.categoryID, activityInfo.groupFinderActivityGroupID, activityInfo.ilvlSuggestion, activityInfo.filters, activityInfo.minLevel, activityInfo.maxNumPlayers, activityInfo.displayType, activityInfo.orderIndex, activityInfo.useHonorLevel, activityInfo.showQuickJoinToast, activityInfo.isMythicPlusActivity, activityInfo.isRatedPvpActivity, activityInfo.isCurrentRaidActivity;
     end
 end

@@ -1,19 +1,19 @@
 ## Interface: 100002
 ## Title: ErrorFilter
-## Notes: Filters the errors displayed in the UIErrorsFrame.
-## Version: v3.8
+## Title-zhCN: [大脚][集]红色信息过滤
+## Title-zhTW: [大腳][集]紅色信息過濾
+## Notes: |cffbc8f8fFilters the errors displayed in the UIErrorsFrame.|r
+## Notes-zhCN: |cff00ff00ErrorFilter|r|n|cffbc8f8f过滤显示界面中上方部分的系统红字提示，可以自行设置想要屏蔽的信息。|r
+## Notes-zhTW: |cff00ff00ErrorFilter|r|n|cffbc8f8f過濾顯示介面中上方部份的系統紅字提示，可以自行設置想要屏蔽的信息。|r
+## Version: v3.7
 ## Author: iceeagle
-## OptionalDeps: Ace3, LibSink-2.0
 ## SavedVariables: ErrorFilterDB
-## DefaultState: enabled
+## Dependencies: BigFoot
+## X-Revision: BigFoot
+## LoadOnDemand: 1
 
-## LoadManagers: AddonLoader
-## X-LoadOn-Always: Delayed
+Locales\enUS.lua
+Locales\zhTW.lua
+Locales\zhCN.lua
 
-ErrorFilter.xml
-
-## Title: |cff880303[163UI]|r ErrorFilter
-## Title-zhCN: |cff880303[有爱]|r ErrorFilter 错误过滤
-## Notes-zhCN: 自动过滤掉屏幕上方的红色提示文字.
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401
+ErrorFilter.lua

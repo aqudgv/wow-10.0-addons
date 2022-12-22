@@ -13,7 +13,11 @@
 		</Scripts>
 	</Frame>
 
-    <Frame name="GearStatsSummarySelfFrame" frameStrata="MEDIUM" toplevel="true" enableMouse="true" movable="true" hidden="true"  parent="UIParent">
+    <Frame name="GearStatsSummarySelfFrame" frameStrata="MEDIUM" toplevel="true" enableMouse="true" movable="true" hidden="true"  parent="UIParent" inherits="BackdropTemplate">
+        <KeyValues>
+            <KeyValue key="backdropInfo" value="BACKDROP_TUTORIAL_16_16" type="global"/>
+            <KeyValue key="backdropColor" value="TOOLTIP_DEFAULT_BACKGROUND_COLOR" type="global"/>
+        </KeyValues>
         <Layers>
             <Layer level="BACKGROUND">
                 <FontString name="GearStatsSummarySelfFrameTitle" inherits="GameTooltipHeaderText">
@@ -47,24 +51,13 @@
                 </Anchors>
             </Button>
         </Frames>
-		<Scripts>
-			<OnLoad>
-                if BackdropTemplateMixin ~= nil then
-                    Mixin(self, BackdropTemplateMixin);
-                end
-                self:SetBackdrop({
-                    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-                    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-                    tile = true,
-                    tileSize = 8,
-                    edgeSize = 8,
-                    insets = { left = 2, right = 2, top = 2, bottom = 2, },
-                });
-            </OnLoad>
-		</Scripts>
     </Frame>
 
-    <Frame name="GearStatsSummaryTargetFrame" frameStrata="MEDIUM" toplevel="true" enableMouse="true" movable="true" hidden="true"  parent="UIParent">
+    <Frame name="GearStatsSummaryTargetFrame" frameStrata="MEDIUM" toplevel="true" enableMouse="true" movable="true" hidden="true"  parent="UIParent" inherits="BackdropTemplate">
+        <KeyValues>
+            <KeyValue key="backdropInfo" value="BACKDROP_TUTORIAL_16_16" type="global"/>
+            <KeyValue key="backdropColor" value="TOOLTIP_DEFAULT_BACKGROUND_COLOR" type="global"/>
+        </KeyValues>
         <Layers>
             <Layer level="BACKGROUND">
                 <FontString name="GearStatsSummaryTargetFrameTitle" inherits="GameTooltipHeaderText">
@@ -99,24 +92,10 @@
             </Button>
         </Frames>
 		<Scripts>
-			<OnLoad>
-                if BackdropTemplateMixin ~= nil then
-                    Mixin(self, BackdropTemplateMixin);
-                end
-                self:SetBackdrop({
-                    bgFile = "Interface\\DialogFrame\\UI-DialogBox-Background",
-                    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
-                    tile = true,
-                    tileSize = 8,
-                    edgeSize = 8,
-                    insets = { left = 2, right = 2, top = 2, bottom = 2, },
-                });
-			</OnLoad>
 			<OnHide>
 				GearStatsSummarySelfFrame:Hide();
 			</OnHide>
 		</Scripts>
     </Frame>
-
 
 </Ui>

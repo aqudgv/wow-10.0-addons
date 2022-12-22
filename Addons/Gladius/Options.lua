@@ -1,4 +1,4 @@
-local pairs = pairs
+﻿local pairs = pairs
 local print = print
 local table = table
 local tonumber = tonumber
@@ -62,6 +62,19 @@ function Gladius:SetTemplate(template)
 		-- enable all features
 		print("Gladius:", "Template not available!")
 	end
+end
+
+--terry	Config call bigfoot@178.com
+function OpenGladius()
+	AceDialog = AceDialog or LibStub("AceConfigDialog-3.0")
+	AceRegistry = AceRegistry or LibStub("AceConfigRegistry-3.0")
+      
+	if (not Gladius.options) then
+		Gladius:SetupOptions()
+		AceDialog:SetDefaultSize("Gladius", 830, 530)
+	end
+      
+	AceDialog:Open("Gladius")
 end
 
 SLASH_GLADIUS1 = "/gladius"
@@ -279,13 +292,13 @@ function Gladius:SetupOptions()
 							growT = {
 								order = 5,
 								type = "select",
-								name = "Direction",
+								name = L["Direction"],
 								desc = L["The Direction you want the frame to go in."],
 								values = {
-									[1] = "Up",
-									[2] = "Down",
-									[3] = "Left",
-									[4] = "Right"
+									[1] = L["Up"],
+									[2] = L["Down"],
+									[3] = L["Left"],
+									[4] = L["Right"]
 								},
 								get = function()
 									return self.dbi.profile.direction

@@ -1,22 +1,24 @@
-## Interface: 100002
+﻿## Interface: 100002
 ## Title:|cFFBF00FF[H]|r Something About Pet Battle
-## Notes:Something About Pet Battle,Type /hpq to config
-## Title-zhCN: |cFFBF00FF[H]|r 宠物对战增强
-## Notes-zhCN: 提醒野生宠物品质等,输入/hpq设置
-## Title-zhTW: |cFFBF00FF[H]|r 寵物對戰增強
-## Notes-zhTW: 提醒野生寵物品質等,輸入/hpq設置
+## Notes: |cffbc8f8fSomething About Pet Battle,Type /hpq to config|r
+## Title-zhCN: [大脚][集]宠物对战增强
+## Notes-zhCN: |cff00ff00HPetBattleAny|r|n|cffbc8f8f提醒野生宠物品质等,输入/hpq设置。|r
+## Title-zhTW: [大腳][集]寵物對戰增強
+## Notes-zhTW: |cff00ff00HPetBattleAny|r|n|cffbc8f8f提醒野生寵物品質等,輸入/hpq設置。|r
 ## Author: Qshine
 ## Author-zhCN: 上官晓雾
 ## Author-zhTW: 上官曉霧
-
-## X-Date: 2020-11-06
-## Version: 2.2.17
-
+## X-Date: 2022-11-25
+## Version: 2.3.1
 ## SavedVariables: HPetSaves
+## Dependencies: BigFoot
+## X-Revision: BigFoot
+## LoadOnDemand: 1
 
 Localization.lua
 
 HPetBattleAny.lua
+
 modules\PetData.lua
 modules\PetDataFrame.lua
 modules\Config.lua
@@ -25,8 +27,3 @@ modules\Search.lua
 modules\Ability.lua
 
 modules\AutoSelectPet.lua
-
-## Title-zhCN: |cff880303[有爱]|r HPetBattle 宠物对战增强
-## Title-zhTW: |cff880303[有爱]|r HPetBattle 寵物對戰增強
-## X-Vendor: NetEase
-## X-163UI-Version: 20221216164606

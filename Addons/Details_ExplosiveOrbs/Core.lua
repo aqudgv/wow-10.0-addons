@@ -14,6 +14,7 @@ local bit_band = bit.band
 local C_ChallengeMode_GetActiveKeystoneInfo = C_ChallengeMode.GetActiveKeystoneInfo
 local CombatLogGetCurrentEventInfo = CombatLogGetCurrentEventInfo
 local CreateFrame = CreateFrame
+local GetAddOnMetadata = GetAddOnMetadata
 local UnitGUID = UnitGUID
 
 local tContains = tContains
@@ -35,14 +36,14 @@ EO.CustomDisplay = {
     target = false,
     author = "Rhythm",
     desc = L["Show how many explosive orbs players target and hit."],
-    script_version = 10,
+    script_version = 11,
     script = [[
         local Combat, CustomContainer, Instance = ...
         local total, top, amount = 0, 0, 0
 
         if _G.Details_ExplosiveOrbs then
             local CombatNumber = Combat:GetCombatNumber()
-            local Container = Combat:GetContainer(DETAILS_ATTRIBUTE_MISC)
+            local Container = Combat:GetContainer(DETAILS_ATTRIBUTE_DAMAGE)
             for _, Actor in Container:ListActors() do
                 if Actor:IsGroupPlayer() then
                     -- we only record the players in party
@@ -124,7 +125,7 @@ EO.CustomDisplayOverall = {
     target = false,
     author = "Rhythm",
     desc = L["Show how many explosive orbs players target and hit."],
-    script_version = 10,
+    script_version = 11,
     script = [[
         local Combat, CustomContainer, Instance = ...
         local total, top, amount = 0, 0, 0
@@ -132,7 +133,7 @@ EO.CustomDisplayOverall = {
         if _G.Details_ExplosiveOrbs then
             local OverallCombat = Details:GetCombat(-1)
             local CombatNumber = OverallCombat:GetCombatNumber()
-            local Container = OverallCombat:GetContainer(DETAILS_ATTRIBUTE_MISC)
+            local Container = OverallCombat:GetContainer(DETAILS_ATTRIBUTE_DAMAGE)
             for _, Actor in Container:ListActors() do
                 if Actor:IsGroupPlayer() then
                     -- we only record the players in party
@@ -246,6 +247,20 @@ EO.CustomDisplayOverall = {
 
 -- Public APIs
 
+local displayTemplate = {
+    -- Use Short Text
+    [true] = {
+        -- Only Show Hit
+        [true]  = '%2$d',
+        [false] = '%d | %d',
+    },
+    [false] = {
+        -- Only Show Hit
+        [true]  = L["Hit: "] .. '%2$d',
+        [false] = L["Target: "] .. '%d ' .. L["Hit: "] .. '%d',
+    },
+}
+
 function Engine:GetRecord(combatID, playerGUID)
     if EO.db[combatID] and EO.db[combatID][playerGUID] then
         return EO.db[combatID][playerGUID].target or 0, EO.db[combatID][playerGUID].hit or 0
@@ -255,13 +270,16 @@ end
 
 function Engine:GetDisplayText(combatID, playerGUID)
     if EO.db[combatID] and EO.db[combatID][playerGUID] then
-        return L["Target: "] .. (EO.db[combatID][playerGUID].target or 0) .. " " .. L["Hit: "] .. (EO.db[combatID][playerGUID].hit or 0)
+        return format(
+            displayTemplate[EO.plugin.db.useShortText][EO.plugin.db.onlyShowHit],
+            EO.db[combatID][playerGUID].target or 0, EO.db[combatID][playerGUID].hit or 0
+        )
     end
-    return L["Target: "] .. "0 " .. L["Hit: "] .. "0"
+    return format(displayTemplate[EO.plugin.db.useShortText][EO.plugin.db.onlyShowHit], 0, 0)
 end
 
 function Engine:FormatDisplayText(target, hit)
-    return L["Target: "] .. (target or 0) .. " " .. L["Hit: "] .. (hit or 0)
+    return format(displayTemplate[EO.plugin.db.useShortText][EO.plugin.db.onlyShowHit], target or 0, hit or 0)
 end
 
 function Engine:RequireOrbName()
@@ -437,7 +455,9 @@ function EO:MergeTrashCleanup()
     -- 2   - boss trash combat
     -- 1   - boss combat
 
-    local runID = select(2, Details:GetCombat(1):IsMythicDungeon())
+    -- Combat 1 might be nil sometimes (#24)
+    local bossCombat = Details:GetCombat(1)
+    local runID = bossCombat and select(2, bossCombat:IsMythicDungeon())
 
     local baseCombat = Details:GetCombat(2)
     -- killed boss before any combat
@@ -515,9 +535,9 @@ function EO:CleanDiscardCombat()
 end
 
 function EO:OnDetailsEvent(event, combat)
-    -- self here is not EO, this function is called from EO.EventListener
     if event == 'COMBAT_PLAYER_ENTER' then
         EO.current = combat:GetCombatNumber()
+        EO.overall = Details:GetCombat(-1):GetCombatNumber()
         EO:Debug("COMBAT_PLAYER_ENTER: %s", EO.current)
     elseif event == 'COMBAT_PLAYER_LEAVE' then
         EO.current = combat:GetCombatNumber()
@@ -544,26 +564,94 @@ function EO:LoadHooks()
     self:SecureHook(_G.DetailsMythicPlusFrame, 'MergeTrashCleanup')
     self:SecureHook(_G.DetailsMythicPlusFrame, 'MergeRemainingTrashAfterAllBossesDone')
 
-    local originResetOverall = Details.historico.resetar_overall
-    Details.historico.resetar_overall = function(...)
-        originResetOverall(...)
-
-        EO:OnResetOverall()
-    end
-    if Details.tabela_historico then
-        self:SecureHook(Details.tabela_historico, 'resetar_overall', 'OnResetOverall')
-    end
+    self:SecureHook(Details.historico, 'resetar_overall', 'OnResetOverall')
     self.overall = Details:GetCombat(-1):GetCombatNumber()
-
-    self.EventListener = Details:CreateEventListener()
-    self.EventListener:RegisterEvent('COMBAT_PLAYER_ENTER')
-    self.EventListener:RegisterEvent('COMBAT_PLAYER_LEAVE')
-    self.EventListener:RegisterEvent('DETAILS_DATA_RESET')
-    self.EventListener.OnDetailsEvent = self.OnDetailsEvent
 
     Details:InstallCustomObject(self.CustomDisplay)
     Details:InstallCustomObject(self.CustomDisplayOverall)
     self:CleanDiscardCombat()
+end
+
+do
+    local plugin
+
+    local defaults = {
+        onlyShowHit = false,
+        useShortText = false,
+    }
+
+    local buildOptionsPanel = function()
+        local frame = plugin:CreatePluginOptionsFrame('DetailsExplosiveOrbsOptionsWindow', 'Details! Explosive Orbs Options', 1)
+
+        local menu = {
+            {
+                type = 'toggle',
+                name = L["Only Show Hit"],
+                desc = L["Only show the hit of Explosive Orbs, without target."],
+                get = function() return plugin.db.onlyShowHit end,
+                set = function(_, _, v) plugin.db.onlyShowHit = v end,
+            },
+            {
+                type = 'toggle',
+                name = L["Use Short Text"],
+                desc = L["Use short text for Explosive Orbs."],
+                get = function() return plugin.db.useShortText end,
+                set = function(_, _, v) plugin.db.useShortText = v end,
+            },
+        }
+
+        local framework = plugin:GetFramework()
+        local options_text_template = framework:GetTemplate('font', 'OPTIONS_FONT_TEMPLATE')
+        local options_dropdown_template = framework:GetTemplate('dropdown', 'OPTIONS_DROPDOWN_TEMPLATE')
+        local options_switch_template = framework:GetTemplate('switch', 'OPTIONS_CHECKBOX_TEMPLATE')
+        local options_slider_template = framework:GetTemplate('slider', 'OPTIONS_SLIDER_TEMPLATE')
+        local options_button_template = framework:GetTemplate('button', 'OPTIONS_BUTTON_TEMPLATE')
+
+        framework:BuildMenu(
+            frame, menu, 15, -75, 360, true, options_text_template, options_dropdown_template,
+            options_switch_template, true, options_slider_template, options_button_template
+        )
+    end
+
+    local OpenOptionsPanel = function()
+        if not _G.DetailsExplosiveOrbsOptionsWindow then
+            buildOptionsPanel()
+        end
+
+        _G.DetailsExplosiveOrbsOptionsWindow:Show()
+    end
+
+    local OnDetailsEvent = function(_, event, ...)
+        if event == 'DETAILS_STARTED' then
+            EO:LoadHooks()
+            return
+        elseif event == 'PLUGIN_DISABLED' then
+            return
+        elseif event == 'PLUGIN_ENABLED' then
+            return
+        end
+
+        EO:OnDetailsEvent(event, ...)
+    end
+
+    function EO:InstallPlugin()
+        local version = GetAddOnMetadata(addon, 'Version')
+
+        plugin = Details:NewPluginObject('Details_ExplosiveOrbs', _G.DETAILSPLUGIN_ALWAYSENABLED)
+        plugin.OpenOptionsPanel = OpenOptionsPanel
+        plugin.OnDetailsEvent = OnDetailsEvent
+        self.plugin = plugin
+
+        local MINIMAL_DETAILS_VERSION_REQUIRED = 20
+        Details:InstallPlugin(
+            'TOOLBAR', L["Explosive Orbs"], 2175503, plugin, 'DETAILS_PLUGIN_EXPLOSIVE_ORBS',
+            MINIMAL_DETAILS_VERSION_REQUIRED, 'Rhythm', version, defaults
+        )
+
+        Details:RegisterEvent(plugin, 'COMBAT_PLAYER_ENTER')
+        Details:RegisterEvent(plugin, 'COMBAT_PLAYER_LEAVE')
+        Details:RegisterEvent(plugin, 'DETAILS_DATA_RESET')
+    end
 end
 
 function EO:OnInitialize()
@@ -582,5 +670,5 @@ function EO:OnInitialize()
     self:RegisterEvent('PLAYER_ENTERING_WORLD', 'CheckAffix')
     self:RegisterEvent('CHALLENGE_MODE_START', 'CheckAffix')
 
-    self:SecureHook(Details, 'StartMeUp', 'LoadHooks')
+    self:InstallPlugin()
 end

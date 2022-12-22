@@ -63,6 +63,7 @@ L["Alert works anywhere else then anena, BG, dungeon instance"] = "除了战场�
 L["Voice config"] = "声音设置"
 L["Voice language"] = "语言类型"
 L["Select language of the alert"] = "选择通报所用语言"
+L["Chinese(Yike Xia)"] = "夏一可"
 L["Chinese(female)"] = "中文（女）"
 L["English(female)"] = "英语（女）"
 L["adjusting the voice volume(the same as adjusting the system master sound volume)"] = "调节声音大小（等同于调节系统主音量大小）"

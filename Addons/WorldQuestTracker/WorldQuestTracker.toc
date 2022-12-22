@@ -1,31 +1,24 @@
 ## Interface: 100002
-
 ## Title: World Quest Tracker
-## Notes: An addon by Terciob. Make more easy to see world quests
+## Title-zhCN: [大脚][集]世界任务增强
+## Title-zhTW: [大腳][集]世界任務增強
+## Notes: |cffbc8f8fAn addon by Terciob. Make more easy to see world quests|r
+## Notes-zhCN: |cff00ff00WorldQuestTracker|r|n|cffbc8f8f追踪并在大地图上显示所有世界任务。|r
+## Notes-zhTW: |cff00ff00WorldQuestTracker|r|n|cffbc8f8f追踪并在大地图上显示所有世界任务。|r
 ## SavedVariables: WQTrackerDB
 ## SavedVariablesPerCharacter: WQTrackerDBChr
-
 ## X-Curse-Project-ID: 100610
 ## X-Wago-ID: lQNlrEKe
-
-## Version: v10.0.2.457-Retail
-
-
-#@no-lib-strip@
-libs\libs.xml
-#@end-no-lib-strip@
+## Version: v10.0.2.458-Retail
+## Dependencies: BigFoot
+## X-Revision: BigFoot
+## LoadOnDemand: 1
 
 locales\enUS.lua
-locales\deDE.lua
-locales\esES.lua
-locales\esMX.lua
-locales\frFR.lua
-locales\itIT.lua
-locales\koKR.lua
-locales\ptBR.lua
-locales\ruRU.lua
 locales\zhCN.lua
 locales\zhTW.lua
+
+libs\libs.xml
 
 WorldQuestTracker.xml
 
@@ -46,7 +39,3 @@ WorldQuestTracker_Tracker.lua
 WorldQuestTracker_Taxi.lua
 
 WorldQuestTrackerMixin.xml
-## Title: |cff880303[163UI]|r WorldQuestTracker
-## Title-zhCN: |cff880303[有爱]|r WorldQuest 世界任务追踪
-## X-Vendor: NetEase
-## X-163UI-Version: 20221208164536

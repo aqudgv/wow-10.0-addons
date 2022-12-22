@@ -271,7 +271,7 @@ CATEGORY = {
             [257] = true,
             [258] = true,
         },
-        activities = {[657] = true}, -- C_LFGList.GetActivityInfo(657) 世界首领
+        activities = {[657] = true},
     },
     [8] = {
         groups = {
@@ -284,10 +284,11 @@ CATEGORY = {
             [265] = true,
             [266] = true,
             [267] = true,
-            --[269] = true, --世界首领 /dump C_LFGList.GetActivityGroupInfo(269)
-            --[270] = true, --暗影国度
-            [271] = true,   --统御圣所
-            [272] = true,   --塔扎维什
+            [269] = true,
+            [270] = true,
+            [271] = true,
+            [272] = true,
+
             [273] = true,
             [274] = true,
             [275] = true,
@@ -297,8 +298,8 @@ CATEGORY = {
             [279] = true,
             [280] = true,
             [281] = true,
-            [282] = true,   --初诞者圣墓
-            [283] = true,   --典狱长的挑战
+            [282] = true,
+            [283] = true,
         },
         activities = {
             [723] = true, -- 世界首领
@@ -306,15 +307,16 @@ CATEGORY = {
     },
     [9] = {
         groups = {
-            [302] = true, -- 艾杰斯亚学院
-            [303] = true, -- 蕨皮山谷
-            [304] = true, -- 注能大厅
-            [305] = true, -- 奈萨鲁斯
-            [306] = true, -- 红玉新生法池
-            [307] = true, -- 碧蓝魔馆
-            [308] = true, -- 诺库德阻击战
-            [309] = true, -- 奥达曼：提尔的遗产
-            [310] = true, -- 化身巨龙牢窟
+            [302] = true,
+            [303] = true,
+            [304] = true,
+            [305] = true,
+            [306] = true,
+            [307] = true,
+            [308] = true,
+            [309] = true,
+
+            [310] = true,
         },
         activities = {
             [1146] = true, -- 世界首领

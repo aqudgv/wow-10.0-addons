@@ -1,21 +1,10 @@
-
-local GetContainerFreeSlots = GetContainerFreeSlots or C_Container.GetContainerFreeSlots;
-local GetContainerNumSlots = GetContainerNumSlots or C_Container.GetContainerNumSlots;
-local GetContainerNumFreeSlots = GetContainerNumFreeSlots or C_Container.GetContainerNumFreeSlots;
-local GetContainerItemInfo = GetContainerItemInfo or C_Container.GetContainerItemInfo;
-local GetContainerItemID = GetContainerItemID or C_Container.GetContainerItemID;
-local GetContainerItemLink = GetContainerItemLink or C_Container.GetContainerItemLink;
-local GetContainerItemDurability = GetContainerItemDurability or C_Container.GetContainerItemDurability;
-local GetContainerItemCooldown = GetContainerItemCooldown or C_Container.GetContainerItemCooldown;
-local UseContainerItem = UseContainerItem or C_Container.UseContainerItem;
-local ContainerIDToInventoryID = ContainerIDToInventoryID or C_Container.ContainerIDToInventoryID;
-
-
 --[[ TrinketMenuQueue : auto queue system ]]
 
 local _G, type, string, tonumber, table, pairs, select = _G, type, string, tonumber, table, pairs, select
 
 local IsClassic = WOW_PROJECT_ID >= WOW_PROJECT_CLASSIC
+local GetContainerNumSlots = GetContainerNumSlots or C_Container.GetContainerNumSlots
+local GetContainerItemLink = GetContainerItemLink or C_Container.GetContainerItemLink
 
 TrinketMenu.PausedQueue = { } -- 0 or 1 whether queue is paused
 
@@ -30,9 +19,9 @@ function TrinketMenu.QueueInit()
 	TrinketMenu_SubQueueFrame:SetBackdropBorderColor(.3, .3, .3,1)
 	TrinketMenu_ProfilesFrame:SetBackdropBorderColor(.3, .3, .3, 1)
 	TrinketMenu_ProfilesListFrame:SetBackdropBorderColor(.3, .3, .3, 1)
-	TrinketMenu_SortPriorityText:SetText("优先")
+	TrinketMenu_SortPriorityText:SetText("Priority")
 	TrinketMenu_SortPriorityText:SetTextColor(.95, .95, .95)
-	TrinketMenu_SortKeepEquippedText:SetText("暂停队列")
+	TrinketMenu_SortKeepEquippedText:SetText("Pause Queue")
 	TrinketMenu_SortKeepEquippedText:SetTextColor(.95, .95, .95)
 	TrinketMenu_SortListFrame:SetBackdropBorderColor(.3, .3, .3, 1)
 	TrinketMenu.ReflectQueueEnabled()
@@ -69,7 +58,7 @@ end
 
 function TrinketMenu.GetNameByID(id)
 	if id == 0 then
-		return "-- 停止队列 --", "Interface\\Buttons\\UI-GroupLoot-Pass-Up", 1
+		return StopQueueHereText1, "Interface\\Buttons\\UI-GroupLoot-Pass-Up", 1
 	else
 		local name, _, quality, _, _, _, _, _, _, texture = GetItemInfo(id or "")
 		return name, texture, quality
@@ -176,7 +165,7 @@ function TrinketMenu.SortTooltip(self)
 		GameTooltip:SetHyperlink(itemLink)
 		GameTooltip:Show()
 	else
-		TrinketMenu.OnTooltip(self,"Stop Queue Here", "Move this to mark the lowest trinket to auto queue. Sometimes you may want a passive trinket with a click effect to be the end (Burst of Knowledge, Second Wind, etc).")
+		TrinketMenu.OnTooltip(self, StopQueueHereText2, StopQueueHereTooltip)
 	end
 end
 

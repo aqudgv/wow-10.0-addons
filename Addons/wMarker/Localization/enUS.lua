@@ -5,9 +5,9 @@ local Language = GetLocale()
 
 if (Language=="enGB") or (Language=="enUS") then
 
-wMarkerLocales = {}
+wMarkerLocals = {}
 
-wMarkerLocales = {
+wMarkerLocals = {
 
 -- Icons
 ["Skull"] = "Skull",
@@ -30,7 +30,7 @@ wMarkerLocales = {
 ["Version"] = "Version",
 ["About"] = "About",
 ["Author"] = "Author",
-["Raid marker"] = "Raid markers",
+["Raid marker"] = "Raid marker",
 ["World markers"] = "World markers",
 ["Key bindings"] = "Key bindings",
 	-- Phrases

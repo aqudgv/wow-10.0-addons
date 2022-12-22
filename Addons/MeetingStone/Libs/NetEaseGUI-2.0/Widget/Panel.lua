@@ -92,8 +92,7 @@ end
 function Panel:EnableUIPanel(flag)
     self:SetPoint('CENTER')
 
-    -- HideUIPanel(self)
-    self:Hide();
+    HideUIPanel(self)
 
     if flag then
         self:SetAttribute('UIPanelLayout-defined', true)
@@ -115,8 +114,7 @@ function Panel:Open(name, icon, ...)
     self:SetText(name)
     self:SetIcon(icon)
 
-    -- ShowUIPanel(self)
-    self:Show()
+    ShowUIPanel(self)
 end
 
 function Panel:Refresh()

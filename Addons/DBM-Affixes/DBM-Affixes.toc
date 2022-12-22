@@ -1,23 +1,21 @@
 ## Interface: 100002
 ## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Dungeon and Raid Affixes|r
-## Title-koKR:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0던전과 공격대 어픽스|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Аффиксы подземелий и рейдов|r
-## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0地下城以及團隊詞綴|r
-## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0副本词缀|r
+## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r 地下城以及團隊詞綴
+## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r 副本词缀
+## Notes:|cff00ff00DBM-Affixes|r
 ## Author: MysticalOS
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
 ## SavedVariables: DBMAffixes_AllSavedVars
 ## X-DBM-Mod: 1
 ## X-DBM-Mod-Type: OTHER
-## X-DBM-Mod-Category: SHADOWLANDS
+## X-DBM-Mod-Category: DRAGONFLIGHT
 ## X-DBM-Mod-No-Statistics: 1
 ## X-DBM-Mod-Name: Affixes
-## X-DBM-Mod-Name-koKR: 어픽스
-## X-DBM-Mod-Name-ruRU: Аффиксы
-## X-DBM-Mod-MapID: 2441, 2097, 1651, 1208, 1195, 2296, 2450, 2481
-## X-DBM-Mod-Sort: 305
+## X-DBM-Mod-MapID: 2516, 2526, 2515, 2521, 1477, 1571, 1176, 960
+## X-DBM-Mod-Sort: 205
 ## X-DBM-Mod-MinCoreRevision: 12473
+## X-Revision: BigFoot
 
 localization.en.lua
 localization.tw.lua
@@ -25,6 +23,3 @@ localization.cn.lua
 
 MPlusAffixes.lua
 FatedAffixes.lua
-
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401

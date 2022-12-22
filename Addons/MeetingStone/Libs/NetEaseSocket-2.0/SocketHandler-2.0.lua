@@ -317,9 +317,9 @@ function EventHandler:CHAT_MSG_CHANNEL_NOTICE(_, event, _, _, _, _, _, _, id, ch
         end
     end
 
-    if ChannelFrame:IsShown() then
-        ChannelList_Update()
-    end
+    -- if ChannelFrame:IsShown() then
+        -- ChannelList_Update()
+    -- end
 end
 
 function EventHandler:PLAYER_LOGOUT()

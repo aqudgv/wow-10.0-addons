@@ -244,7 +244,7 @@ else
 	HPetBattleAny.GetPetAState = function(id) return (addon.PetData[id] or addon.fixPetBaseData[id]) and GetAState(id) end
 end
 
-HPetBattleAny.GetPetIDByItemID = function(id) return addon.PetIDByItemID[id] end
+HPetBattleAny.GetPetIDByItemID = function(id) return addon.PetIDByItemID[tostring(id)] end
 
 local HEALTH,POWER,SPEED = 1,2,3
 local PetData = addon.PetData
@@ -561,7 +561,6 @@ function HPetAllInfoFrame:Update(speciesID,breedID,rarityvalue,levelvalue)
 		end
 	end
 
-    if tonumber(speciesID) == nil then return end
 	local name, icon, petType, creatureID, sourceText, description, isWild, canBattle, tradable, unique = C_PetJournal.GetPetInfoBySpeciesID(speciesID);
 
 	HPetAllInfoFrame.petName.text:SetText(name)HPetAllInfoFrame.petName.text:SetFont(ChatFontNormal:GetFont(), 14, "")
@@ -582,12 +581,13 @@ function HPetAllInfoFrame:Update(speciesID,breedID,rarityvalue,levelvalue)
 	HPetAllInfoFrame.levelTable.UpdateInfo(speciesID,breedID,levelvalue,rarityvalue)
 
 	HPetAllInfoFrame:UpdateSize(height);
-	updateElapsed = 0
+	-- updateElapsed = 0
 	HPetAllInfoFrame.speciesID = speciesID
 	HPetAllInfoFrame.breedID = breedID
 end
 
-function HPetAllInfoFrame:AnchorToBlizzard()
+function HPetAllInfoFrame:Init()
+	-- init frame
 	self:SetParent(PetJournal)
 	self:SetWidth(350)
 	self:SetPoint("TOPLEFT",PetJournal,"TOPRIGHT")
@@ -595,11 +595,6 @@ function HPetAllInfoFrame:AnchorToBlizzard()
 	self:SetToplevel(true)
 	self:SetMovable(true)
 	self:SetClampedToScreen(true)
-end
-
-function HPetAllInfoFrame:Init()
-	-- init frame
-    self:AnchorToBlizzard()
 
 	-- background
 	self.rightbg	=self:CreateVLine(0, 0, 0, 1,LINECOLOR)
@@ -627,7 +622,7 @@ function HPetAllInfoFrame:Init()
 	self:RegisterForDrag("LeftButton")
 	self:SetScript("OnDragStart",function(self) self:StartMoving() end)
 	self:SetScript("OnDragStop",function(self) self:StopMovingOrSizing() end)
-	frames={
+	local frames={
 		-- name
 		{name="petName",width="350",height="30",
 		point="TOPLEFT",
@@ -703,7 +698,7 @@ function HPetAllInfoFrame:Init()
 	lock:SetPoint("RIGHT")
 	lock:SetScript("OnClick",function(self)
 		rarityslider:Show()
-		isChecked = self:GetChecked()
+		local isChecked = self:GetChecked()
 		if isChecked then
 			PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
 		else
@@ -1056,39 +1051,6 @@ function HPetAllInfoFrame:initframe(frames)
 end
 function HPetAllInfoFrame:Toggle(...)
 	if not self.ready then self:Init() end
-	if self:GetParent() == RematchPetCard then self:Hide() end
-	self:AnchorToBlizzard()
-    self:SetIgnoreParentAlpha(false)
 	self:Update(...)
-	if not self:IsVisible() then self:Show() else self:Hide() end
+	if not self:IsShown() then self:Show() else self:Hide() end
 end
-
-CoreDependCall("Rematch", function()
-    hooksecurefunc(Rematch, "ShowPetCard", function(self, parent, petID)
-        if not RematchPetCard.petID then return end
-        local idType = Rematch:GetIDType(RematchPetCard.petID)
-        if idType == "species" then
-            PetJournalPetCard.speciesID = petID
-            PetJournalPetCard.breedID = nil
-        elseif idType == "pet" then
-            if PetJournalPetCard then
-                PetJournalPetCard.speciesID = C_PetJournal.GetPetInfoByPetID(RematchPetCard.petID)
-                PetJournalPetCard.breedID = select(4, HPetBattleAny.ShowMaxValue(RematchPetCard.petID))
-            end
-        else
-            return
-        end
-        local self = HPetAllInfoFrame
-        if not self.ready then self:Init() end
-        self:SetParent(RematchPetCard)
-        self:SetIgnoreParentAlpha(true)
-       	self:SetWidth(350)
-       	self:SetPoint("TOPLEFT",RematchPetCard,"TOPRIGHT", -2, -73)
-       	self:SetFrameStrata("HIGH")
-       	self:SetToplevel(true)
-       	self:SetMovable(true)
-       	self:SetClampedToScreen(false)
-        self:Update()
-        self:Show()
-    end)
-end)

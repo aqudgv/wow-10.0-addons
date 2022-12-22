@@ -1,17 +1,23 @@
-## Interface: 100002
+﻿## Interface: 100002
 ## Title: Gladius
+## Title-zhCN: [大脚][集]竞技助手
+## Title-zhTW: [大腳][集]競技助手
 ## Version: 8.0.0
-## Notes: Arena enemy unit frames.
+## Notes: |cffbc8f8fArena enemy unit frames.|r
+## Notes-zhCN: |cff00ff00Gladius|r|n|cffbc8f8f竞技场敌人的头像插件。|r
+## Notes-zhTW: |cff00ff00Gladius|r|n|cffbc8f8f競技場敵人的頭像插件。|r
 ## Author: Resike and Firebunny. Original author: Proditor
 ## SavedVariables: Gladius2DB
-## OptionalDeps: Ace3, LibStub, LibSharedMedia-3.0
+## Dependencies: BigFoot
+## X-Revision: BigFoot
+## LoadOnDemand: 1
 
-#@no-lib-strip@
-Embeds.xml
-#@end-no-lib-strip@
+libs\DRData-1.0\DRData-1.0.lua
 
 Gladius.lua
+
 Localizations.lua
+
 Options.lua
 
 Modules\HealthBar.lua
@@ -30,9 +36,3 @@ Modules\Timer.lua
 Modules\Layout.lua
 Modules\Dispel.lua
 Modules\Racial.lua
-
-## Title: |cff880303[163UI]|r Gladius
-## Title-zhCN: |cff880303[有爱]|r Gladius 竞技场头像
-## Notes-zhCN: 竞技场显示对方的头像框体
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401

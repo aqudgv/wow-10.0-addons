@@ -315,7 +315,7 @@ end
 
 --cria o header
 local WorldQuestTrackerHeader = CreateFrame ("frame", "WorldQuestTrackerQuestsHeader", WorldQuestTrackerFrame, "ObjectiveTrackerHeaderTemplate") -- "ObjectiveTrackerHeaderTemplate"
-WorldQuestTrackerHeader.Text:SetText ("World Quest Tracker")
+WorldQuestTrackerHeader.Text:SetText (L["World Quest Tracker"])
 local minimizeButton = CreateFrame ("button", "WorldQuestTrackerQuestsHeaderMinimizeButton", WorldQuestTrackerFrame, "BackdropTemplate")
 local minimizeButtonText = minimizeButton:CreateFontString (nil, "overlay", "GameFontNormal")
 
@@ -344,7 +344,7 @@ minimizeButton:SetScript("OnClick", function()
 		WorldQuestTrackerFrame_QuestHolder:Hide()
 		WorldQuestTrackerHeader:Hide()
 		minimizeButtonText:Show()
-		minimizeButtonText:SetText ("World Quest Tracker")
+		minimizeButtonText:SetText (L["World Quest Tracker"])
 	end
 end)
 

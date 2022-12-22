@@ -114,7 +114,7 @@ function Glow:Draw(pin, xy)
     if pin.SetScalingLimits then -- World map only!
         pin:SetScalingLimits(1, 1.0, 1.2)
     end
-    pin:SetAlpha(hn_alpha * self.alpha)
+    pin:SetAlpha(min(max(hn_alpha * self.alpha,0),1))
     pin:SetSize(size, size)
     return HandyNotes:getXY(xy)
 end

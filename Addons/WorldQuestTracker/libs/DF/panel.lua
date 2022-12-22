@@ -4,6 +4,12 @@ if (not detailsFramework or not DetailsFrameworkCanLoad) then
 	return
 end
 
+--localization
+local L = LibStub ("AceLocale-3.0"):GetLocale ("WorldQuestTrackerAddon", true)
+if (not L) then
+	return
+end
+
 local _
 --lua locals
 local rawset = rawset --lua local
@@ -2280,7 +2286,7 @@ function detailsFramework:ShowPromptPanel(message, trueCallback, falseCallback, 
 		detailsFramework:ApplyStandardBackdrop(promptFrame)
 		tinsert(UISpecialFrames, "DetailsFrameworkPromptSimple")
 
-		detailsFramework:CreateTitleBar(promptFrame, "Prompt!")
+		detailsFramework:CreateTitleBar(promptFrame, L["Prompt!"])
 		detailsFramework:ApplyStandardBackdrop(promptFrame)
 
 		local prompt = promptFrame:CreateFontString(nil, "overlay", "GameFontNormal")
@@ -2384,7 +2390,7 @@ function detailsFramework:ShowTextPromptPanel(message, callback)
 		promptFrame:SetScript("OnMouseDown", function(self, button) if (button == "RightButton") then promptFrame.EntryBox:ClearFocus() promptFrame:Hide() end end)
 		tinsert(UISpecialFrames, "DetailsFrameworkPrompt")
 
-		detailsFramework:CreateTitleBar (promptFrame, "Prompt!")
+		detailsFramework:CreateTitleBar (promptFrame, L["Prompt!"])
 		detailsFramework:ApplyStandardBackdrop(promptFrame)
 
 		local prompt = promptFrame:CreateFontString(nil, "overlay", "GameFontNormal")
@@ -2998,7 +3004,7 @@ local chart_panel_add_data = function(self, graphicData, color, name, elapsedTim
 		chartPanel:AddLabel(color or line_default_color, name, "graphic", #chartPanel.GData)
 	end
 
-	local newLineTexture = "Interface\\AddOns\\Details\\Libs\\LibGraph-2.0\\line"
+	local newLineTexture = "Interface\\AddOns\\!!!Libs\\LibGraph-2.0\\line"		-- bf@178.com
 
 	if (firstIndex) then
 		table.insert(LibGraphChartFrame.Data, 1, {Points = builtData, Color = color or line_default_color, lineTexture = newLineTexture, ElapsedTime = elapsedTime})
@@ -5038,6 +5044,10 @@ detailsFramework.HeaderFunctions = {
 		tinsert(self.FramesToAlign, frame)
 	end,
 
+	GetFramesFromHeaderAlignment = function(self, frame)
+		return self.FramesToAlign or {}
+	end,
+
 	--@self: an object like a line
 	--@headerFrame: the main header frame
 	--@anchor: which side the columnHeaders are attach
@@ -6014,13 +6024,15 @@ function detailsFramework:OpenLoadConditionsPanel(optionsTable, callback, frameO
 			if IS_WOW_PROJECT_MAINLINE then
 				local talentList = {}
 				for _, talentTable in ipairs(detailsFramework:GetCharacterTalents()) do
-					tinsert(talentList, {
-						name = talentTable.Name,
-						set = loadConditionsFrame.OnRadioCheckboxClick,
-						param = talentTable.ID,
-						get = function() return loadConditionsFrame.OptionsTable.talent [talentTable.ID] or loadConditionsFrame.OptionsTable.talent [talentTable.ID .. ""] end,
-						texture = talentTable.Texture,
-					})
+					if talentTable.ID then
+						tinsert(talentList, {
+							name = talentTable.Name,
+							set = loadConditionsFrame.OnRadioCheckboxClick,
+							param = talentTable.ID,
+							get = function() return loadConditionsFrame.OptionsTable.talent [talentTable.ID] or loadConditionsFrame.OptionsTable.talent [talentTable.ID .. ""] end,
+							texture = talentTable.Texture,
+						})
+					end
 				end
 				local talentGroup = detailsFramework:CreateCheckboxGroup (loadConditionsFrame, talentList, name, {width = 200, height = 200, title = "Characer Talents"}, {offset_x = 150, amount_per_line = 3})
 				talentGroup:SetPoint("topleft", loadConditionsFrame, "topleft", anchorPositions.talent [1], anchorPositions.talent [2])
@@ -6317,13 +6329,15 @@ function detailsFramework:OpenLoadConditionsPanel(optionsTable, callback, frameO
 				--update the talents (might have changed if the player changed its specialization)
 				local talentList = {}
 				for _, talentTable in ipairs(detailsFramework:GetCharacterTalents()) do
-					tinsert(talentList, {
-						name = talentTable.Name,
-						set = DetailsFrameworkLoadConditionsPanel.OnRadioCheckboxClick,
-						param = talentTable.ID,
-						get = function() return DetailsFrameworkLoadConditionsPanel.OptionsTable.talent [talentTable.ID] or DetailsFrameworkLoadConditionsPanel.OptionsTable.talent [talentTable.ID .. ""] end,
-						texture = talentTable.Texture,
-					})
+					if talentTable.ID then
+						tinsert(talentList, {
+							name = talentTable.Name,
+							set = DetailsFrameworkLoadConditionsPanel.OnRadioCheckboxClick,
+							param = talentTable.ID,
+							get = function() return DetailsFrameworkLoadConditionsPanel.OptionsTable.talent [talentTable.ID] or DetailsFrameworkLoadConditionsPanel.OptionsTable.talent [talentTable.ID .. ""] end,
+							texture = talentTable.Texture,
+						})
+					end
 				end
 				DetailsFrameworkLoadConditionsPanel.TalentGroup:SetOptions (talentList)
 			end
@@ -7958,7 +7972,7 @@ detailsFramework.CastFrameFunctions = {
 					--[[if not self.spellEndTime then
 						self:UpdateChannelInfo(self.unit)
 					end]]--
-					self.value = self.spellEndTime - GetTime()
+					self.value = self.empowered and (GetTime() - self.spellStartTime) or (self.spellEndTime - GetTime())
 				end
 
 				self:RunHooksForWidget("OnShow", self, self.unit)
@@ -7997,7 +8011,7 @@ detailsFramework.CastFrameFunctions = {
 					self.percentText:SetText(format("%.1f", abs(self.value - self.maxValue)))
 
 				elseif (self.channeling) then
-					local remainingTime = abs(self.value)
+					local remainingTime = self.empowered and abs(self.value - self.maxValue) or abs(self.value)
 					if (remainingTime > 999) then
 						self.percentText:SetText("")
 					else
@@ -8034,7 +8048,7 @@ detailsFramework.CastFrameFunctions = {
 
 	--tick function for channeling casts
 	OnTick_Channeling = function(self, deltaTime)
-		self.value = self.value - deltaTime
+		self.value = self.empowered and self.value + deltaTime or self.value - deltaTime
 
 		if (self:CheckCastIsDone()) then
 			return
@@ -8045,6 +8059,8 @@ detailsFramework.CastFrameFunctions = {
 		--update spark position
 		local sparkPosition = self.value / self.maxValue * self:GetWidth()
 		self.Spark:SetPoint("center", self, "left", sparkPosition + self.Settings.SparkOffset, 0)
+		
+		self:CreateOrUpdateEmpoweredPips()
 
 		return true
 	end,
@@ -8177,6 +8193,14 @@ detailsFramework.CastFrameFunctions = {
 		if (not self:IsValid (unit, name, isTradeSkill, true)) then
 			return
 		end
+		
+		--empowered? no!
+			self.holdAtMaxTime = nil
+			self.empowered = false
+			self.curStage = nil
+			self.numStages = nil
+			self.empStages = nil
+			self:CreateOrUpdateEmpoweredPips()
 
 		--setup cast
 			self.casting = true
@@ -8231,6 +8255,51 @@ detailsFramework.CastFrameFunctions = {
 
 		self:RunHooksForWidget("OnCastStart", self, self.unit, "UNIT_SPELLCAST_START")
 	end,
+	
+	CreateOrUpdateEmpoweredPips = function(self, unit, numStages, startTime, endTime)
+		unit = unit or self.unit
+		numStages = numStages or self.numStages
+		startTime = startTime or ((self.spellStartTime or 0) * 1000)
+		endTime = endTime or ((self.spellEndTime or 0) * 1000)
+		
+		if not self.empStages or not numStages or numStages <= 0 then
+			self.stagePips = self.stagePips or {}
+			for i, stagePip in pairs(self.stagePips) do
+				stagePip:Hide()
+			end
+			return
+		end
+		
+		local width = self:GetWidth()
+		local height = self:GetHeight()
+		for i = 1, numStages, 1 do
+			local curStartTime = self.empStages[i] and self.empStages[i].start
+			local curEndTime = self.empStages[i] and self.empStages[i].finish
+			local curDuration = curEndTime - curStartTime
+			local offset = width * curEndTime / (endTime - startTime) * 1000
+			if curDuration > -1 then
+				
+				stagePip = self.stagePips[i]
+				if not stagePip then
+					stagePip = self:CreateTexture(nil, "overlay", nil, 2)
+					stagePip:SetBlendMode("ADD")
+					stagePip:SetTexture([[Interface\CastingBar\UI-CastingBar-Spark]])
+					stagePip:SetTexCoord(11/32,18/32,9/32,23/32)
+					stagePip:SetSize(2, height)
+					--stagePip = CreateFrame("FRAME", nil, self, "CastingBarFrameStagePipTemplate")
+					self.stagePips[i] = stagePip
+				end
+				
+				stagePip:ClearAllPoints()
+				--stagePip:SetPoint("TOP", self, "TOPLEFT", offset, -1)
+				--stagePip:SetPoint("BOTTOM", self, "BOTTOMLEFT", offset, 1)
+				--stagePip.BasePip:SetVertexColor(1, 1, 1, 1)
+				stagePip:SetPoint("CENTER", self, "LEFT", offset, 0)
+				stagePip:SetVertexColor(1, 1, 1, 1)
+				stagePip:Show()
+			end
+		end
+	end,
 
 	UpdateChannelInfo = function(self, unit, ...)
 		local name, text, texture, startTime, endTime, isTradeSkill, notInterruptible, spellID, _, numStages = UnitChannelInfo (unit)
@@ -8242,15 +8311,22 @@ detailsFramework.CastFrameFunctions = {
 		
 		--empowered?
 			self.empStages = {}
+			self.stagePips = self.stagePips or {}
+			for i, stagePip in pairs(self.stagePips) do
+				stagePip:Hide()
+			end
+			
 			if numStages and numStages > 0 then
-				self.holdAtMaxTime = GetUnitEmpowerHoldAtMaxTime(unit)
+				self.holdAtMaxTime = GetUnitEmpowerHoldAtMaxTime(self.unit)
 				self.empowered = true
+				self.numStages = numStages
+				
 
 				local lastStageEndTime = 0
 				for i = 1, numStages do
 					self.empStages[i] = {
 						start = lastStageEndTime,
-						finish = lastStageEndTime - GetUnitEmpowerStageDuration(unit, i - 1) / 1000,
+						finish = lastStageEndTime + GetUnitEmpowerStageDuration(unit, i - 1) / 1000,
 					}
 					lastStageEndTime = self.empStages[i].finish
 					
@@ -8262,10 +8338,14 @@ detailsFramework.CastFrameFunctions = {
 				if (self.Settings.ShowEmpoweredDuration) then
 					endTime = endTime + self.holdAtMaxTime
 				end
+				
+				--create/update pips
+				self:CreateOrUpdateEmpoweredPips(unit, numStages, startTime, endTime)
 			else
-				self.holdAtMaxTime = 0
+				self.holdAtMaxTime = nil
 				self.empowered = false
-				self.curStage = 0
+				self.curStage = nil
+				self.numStages = nil
 			end
 
 		--setup cast
@@ -8281,9 +8361,9 @@ detailsFramework.CastFrameFunctions = {
 			self.spellTexture = texture
 			self.spellStartTime = startTime / 1000
 			self.spellEndTime = endTime / 1000
-			self.value = self.spellEndTime - GetTime()
+			self.value = self.empowered and (GetTime() - self.spellStartTime) or (self.spellEndTime - GetTime())
 			self.maxValue = self.spellEndTime - self.spellStartTime
-			self.numStages = numStages
+			self.reverseChanneling = self.empowered
 
 			self:SetMinMaxValues(0, self.maxValue)
 			self:SetValue(self.value)
@@ -8486,13 +8566,13 @@ detailsFramework.CastFrameFunctions = {
 		--update the cast time
 		self.spellStartTime = startTime / 1000
 		self.spellEndTime = endTime / 1000
-		self.value = self.spellEndTime - GetTime()
+		self.value = self.empowered and (GetTime() - self.spellStartTime) or (self.spellEndTime - GetTime())
+		self.maxValue = self.spellEndTime - self.spellStartTime
 
-		if (self.value < 0) then
+		if (self.value < 0 or self.value >= self.maxValue) then
 			self.value = 0
 		end
 
-		self.maxValue = self.spellEndTime - self.spellStartTime
 		self:SetMinMaxValues(0, self.maxValue)
 		self:SetValue(self.value)
 	end,

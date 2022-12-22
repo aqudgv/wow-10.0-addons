@@ -564,8 +564,8 @@ function WorldQuestTracker:OnInit()
 		end
 	end
 	
-	WorldQuestTracker:RegisterEvent ("TAXIMAP_OPENED")
-	WorldQuestTracker:RegisterEvent ("TAXIMAP_CLOSED")
+	-- WorldQuestTracker:RegisterEvent ("TAXIMAP_OPENED")		bf@178.com
+	-- WorldQuestTracker:RegisterEvent ("TAXIMAP_CLOSED")		bf@178.com
 	WorldQuestTracker:RegisterEvent ("ZONE_CHANGED_NEW_AREA")
 	WorldQuestTracker:RegisterEvent ("QUEST_TURNED_IN")
 	WorldQuestTracker:RegisterEvent ("QUEST_LOOT_RECEIVED")
@@ -1566,6 +1566,6 @@ hooksecurefunc (WorldMapFrame.UIElementsFrame.BountyBoard, "AnchorBountyTab", fu
 end)
 --]=]
 
--- stop auto complete doq dow endf thena ends then�
+-- stop auto complete doq dow endf thena
 
 

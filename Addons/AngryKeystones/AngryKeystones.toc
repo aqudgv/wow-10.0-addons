@@ -1,11 +1,17 @@
 ## Interface: 100002
 ## Title: Angry Keystones
-## Notes: Displays additional information for Mythic Keystone dungeons
+## Title-zhCN: [大脚][集]秘境增强
+## Title-zhTW: [大腳][集]秘境增強
+## Notes: |cffbc8f8fDisplays additional information for Mythic Keystone dungeons|r
+## Notes-zhCN: |cff00ff00AngryKeystones|r
+## Notes-zhTW: |cff00ff00AngryKeystones|r
 ## Author: Ermad
 ## SavedVariables: AngryKeystones_Config, AngryKeystones_Data
 ## SavedVariablesPerCharacter: AngryKeystones_CharacterConfig
-## X-Packaged-Version: v0.26.6
-
+## X-Packaged-Version: v0.27.0
+## Dependencies: BigFoot
+## X-Revision: BigFoot
+## LoadOnDemand: 1
 
 Core.lua
 Locale.lua
@@ -17,8 +23,3 @@ Keystone.lua
 Gossip.lua
 Splits.lua
 Schedule.lua
-
-## Title: |cff880303[163UI]|r AngryKeystones
-## Title-zhCN: |cff880303[有爱]|r AngryKS 秘境计时增强
-## X-Vendor: NetEase
-## X-163UI-Version: 20221208164536

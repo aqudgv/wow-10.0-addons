@@ -22,7 +22,12 @@ function BrowsePanel:OnInitialize()
             return activity:BaseSortHandler()
         end)
         ActivityList:RegisterFilter(function(activity, ...)
-            return activity:Match(...)
+            local isFilteFaction = true
+            if Profile:GetSetting("ONLY_SHOW_SELF_GROUP") then
+                local PLAYER_FACTION = UnitFactionGroup("player") == 'Alliance' and 1 or 0
+                isFilteFaction = PLAYER_FACTION == activity:GetLeaderFactionGroup()
+            end
+            return isFilteFaction and activity:Match(...)
         end)
         ActivityList:InitHeader{
             {
@@ -191,44 +196,24 @@ function BrowsePanel:OnInitialize()
                 style = 'LEFT',
                 width = 178,
                 showHandler = function(activity)
+                    local icon = activity:GetLeaderFactionGroup() == 1 and [[|TInterface\WORLDSTATEFRAME\AllianceIcon:16|t]] or [[|TInterface\WORLDSTATEFRAME\HordeIcon:16|t]]
                     if activity:IsUnusable() then
-                        return activity:GetLeaderFullName() or "", GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b
+                        return icon..(activity:GetLeaderFullName() or ""), GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b
                     else
-                        local prefix = ""
-                        if activity:GetCrossFactionListing() then
-                            local faction
-                            if activity:GetLeaderFactionGroup() == 0 then
-                                faction = "horde"
-                            elseif activity:GetLeaderFactionGroup() == 1 then
-                                faction = "alliance"
-                            end
-                            if faction then
-                                prefix = format("|Tinterface/battlefieldframe/battleground-%s:20:20:0:0|t", faction)
-                                --prefix = format("|Tinterface/icons/pvpcurrency-honor-%s:0:0:0:0|t", faction)
-                            end
-                        end
-                        return prefix .. (activity:GetLeaderFullName() or ""), HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g,
+                        return icon..(activity:GetLeaderFullName() or ""), HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g,
                                HIGHLIGHT_FONT_COLOR.b
                     end
                 end,
             },{
                 key = 'LeaderScore',
-                text = L['评分'],
-                --style = 'LEFT',
+                text = L['大秘评分'],
+                style = 'LEFT',
                 width = 90,
                 textHandler = function(activity)
-                    local score = activity:GetRatingToShow()
-                    if not score or score == 0 then
-                        return NONE, GRAY_FONT_COLOR.r, GRAY_FONT_COLOR.g, GRAY_FONT_COLOR.b
-                    elseif activity:IsRatedPvpActivity() then
-                        return score, 1, 1, 1
-                    else
-                        local color = C_ChallengeMode.GetDungeonScoreRarityColor(score) or HIGHLIGHT_FONT_COLOR
-                        return score, color.r, color.g, color.b
-                    end
+                    return activity:GetLeaderScore(), HIGHLIGHT_FONT_COLOR.r, HIGHLIGHT_FONT_COLOR.g, HIGHLIGHT_FONT_COLOR.b
                 end,
                 sortHandler = function(activity)
-                    return 1/(activity:GetRatingToShow() + 1)
+                    return 1/(activity:GetLeaderScore() + 1)
                 end,
             }, {
                 key = 'Summary',
@@ -396,7 +381,7 @@ function BrowsePanel:OnInitialize()
                 end
             end
             self:StartSet()
-            --self.ActivityDropdown:SetValue(GetActivityCode(nil, nil, data.categoryId)) --abyui 最近搜索
+            self.ActivityDropdown:SetValue(GetActivityCode(nil, nil, data.categoryId))
             self:EndSet()
         end)
     end
@@ -709,6 +694,17 @@ function BrowsePanel:OnInitialize()
         autoJoinCheckBox:SetChecked(not not Profile:GetSetting("AUTO_JOIN"))
         autoJoinCheckBox:SetScript("OnClick", function()
             Profile:SetSetting("AUTO_JOIN", autoJoinCheckBox:GetChecked())
+		end)
+    end
+
+    local showGroupCheckBox = GUI:GetClass('CheckBox'):New(self) do
+        showGroupCheckBox:SetSize(24, 24)
+        showGroupCheckBox:SetPoint('LEFT', autoJoinCheckBox, 'RIGHT', 80, 0)
+        showGroupCheckBox:SetText("仅展示本阵营活动")
+        showGroupCheckBox:SetChecked(not not Profile:GetSetting("ONLY_SHOW_SELF_GROUP"))
+        showGroupCheckBox:SetScript("OnClick", function()
+            Profile:SetSetting("ONLY_SHOW_SELF_GROUP", showGroupCheckBox:GetChecked())
+            self:UpdateFilters()
 		end)
     end
 

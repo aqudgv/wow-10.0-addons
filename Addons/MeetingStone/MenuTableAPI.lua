@@ -1,4 +1,3 @@
-
 BuildEnv(...)
 
 local makedCategorys = {}
@@ -43,12 +42,8 @@ local function MakeActivityMenuTable(activityId, baseFilter, customId, menuType)
 
     local data = {}
 
-    -- 2 普通, 凋魂之殇（普通）  --print(categoryId, groupId, diff, "," , fullName)
-    -- 3 英雄,  尼奥罗萨，觉醒之城（英雄）
-    -- 113 难度1, 扭曲回廊
-    -- 4 2v2 竞技场（2v2）
     if categoryId == 113 then
-        data.text = fullName .. " " .. diff
+        data.text = diff
     else
         data.text = fullName
     end
@@ -62,6 +57,8 @@ local function MakeActivityMenuTable(activityId, baseFilter, customId, menuType)
     data.value = GetActivityCode(activityId, customId, categoryId, groupId)
     if menuType == ACTIVITY_FILTER_BROWSE then
         data.full = C_LFGList.GetCategoryInfo(categoryId)
+    elseif categoryId == 113 then
+        data.full = format('%s - %s', fullName, diff)
     end
 
     currentCodeCache[data.value] = data

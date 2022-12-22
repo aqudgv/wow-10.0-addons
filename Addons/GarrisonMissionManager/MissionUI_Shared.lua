@@ -319,7 +319,8 @@ function addon_env.MissionList_ButtonsInit(follower_type)
    local frame_prefix          = opt.gmm_button_mission_list_prefix
 
    local level_anchor = blizzard_mission_list.listScroll
-   local blizzard_buttons = blizzard_mission_list.listScroll.buttons
+   if not level_anchor then return end
+   local blizzard_buttons = level_anchor.buttons
    for idx = 1, #blizzard_buttons do
       local blizzard_button = blizzard_buttons[idx]
       if not gmm_buttons[frame_prefix .. idx] then

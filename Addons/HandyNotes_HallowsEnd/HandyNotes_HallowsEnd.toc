@@ -1,6 +1,10 @@
 ## Interface: 100002
 ## Title: HandyNotes_HallowsEnd
+## Title-zhCN: [大脚][集]地图标记_万圣节
+## Title-zhTW: [大腳][集]地圖標記_萬聖節
 ## Notes: Displays the locations of Hallow's End candy buckets.
+## Notes-zhCN: |cff00ff00HandyNotes_HallowsEnd|r
+## Notes-zhTW: |cff00ff00HandyNotes_HallowsEnd|r
 ## Author: Ravendwyr
 ## Version: v1.5.2
 ## X-Category: Map & Minimap
@@ -8,13 +12,9 @@
 ## RequiredDeps: HandyNotes
 ## X-Curse-Project-ID: 46114
 ## X-Wago-ID: XrNkjlGa
+## X-Revision: BigFoot
 
 Core.lua
 
 Alliance.lua
 Horde.lua
-
-## Title: |cff880303[163UI]|r HandyNotes_HallowsEnd
-## Title-zhCN: |cff880303[有爱]|r HandyNotes 万圣节糖罐
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401

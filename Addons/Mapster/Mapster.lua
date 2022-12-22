@@ -18,7 +18,7 @@ local defaults = {
 		modules = {
 			['*'] = true,
 		},
-		enableScaling = false,
+		enableScaling = true,
 		scale = 1,
 		poiScale = 0.9,
 		ejScale = 0.8,
@@ -263,7 +263,7 @@ end
 
 function Mapster:HelpPlate_Show(plate, frame)
 	if frame == WorldMapFrame then
-		HelpPlate:SetScale(db.scale)
+		HelpPlate:SetScale(db.scale or 1)	--bf@178.com
 		HelpPlate.__Mapster = true
 	end
 end

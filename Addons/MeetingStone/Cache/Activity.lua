@@ -26,14 +26,7 @@ Activity:InitAttr{
     'KilledBossCount',
     'LeaderScore',
     'LeaderScoreInfo',
-    'LeaderPvpRatingInfo',
-    'RequiredDungeonScore',
-    'RequiredPvpRating',
-    'CrossFactionListing',
     'LeaderFactionGroup',
-    'IsMythicPlusActivity',
-    'IsRatedPvpActivity',
-    'RatingToShow',
 }
 
 Activity._Objects = setmetatable({}, {__mode = 'v'})
@@ -70,10 +63,6 @@ function Activity:Update()
     local numMembers = info.numMembers
     local leaderOverallDungeonScore = info.leaderOverallDungeonScore
     local leaderDungeonScoreInfo = info.leaderDungeonScoreInfo
-    local leaderPvpRatingInfo = info.leaderPvpRatingInfo
-    local requiredDungeonScore = info.requiredDungeonScore
-    local requiredPvpRating = info.requiredPvpRating
-    local crossFactionListing = info.crossFactionListing
     local leaderFactionGroup = info.leaderFactionGroup
 
     if not activityId then
@@ -83,7 +72,7 @@ function Activity:Update()
         iLvl = 0
     end
 
-    local name, shortName, category, group, iLevel, filters, minLevel, maxMembers, displayType, orderIndex, useHonorLevel, showQuickJoin, isMythicPlusActivity, isRatedPvpActivity, isCurrentRaidActivity, isPvpActivity, isMythicActivity, allowCrossFaction = C_LFGList.GetActivityInfo(activityId)
+    local name, shortName, category, group, iLevel, filters, minLevel, maxMembers, displayType = C_LFGList.GetActivityInfo(activityId)
     local _, appStatus, pendingStatus, appDuration = C_LFGList.GetApplicationInfo(id)
 
     if leader then
@@ -113,18 +102,7 @@ function Activity:Update()
     self:SetApplicationExpiration(GetTime() + appDuration)
     self:SetLeaderScore(leaderOverallDungeonScore or 0)
     self:SetLeaderScoreInfo(leaderDungeonScoreInfo)
-    self:SetLeaderPvpRatingInfo(leaderPvpRatingInfo)
-    self:SetRequiredDungeonScore(requiredDungeonScore)
-    self:SetRequiredPvpRating(requiredPvpRating)
-    self:SetCrossFactionListing(crossFactionListing)
     self:SetLeaderFactionGroup(leaderFactionGroup)
-    self:SetIsMythicPlusActivity(isMythicPlusActivity)
-    self:SetIsRatedPvpActivity(isRatedPvpActivity)
-    if isRatedPvpActivity then
-        self:SetRatingToShow(leaderPvpRatingInfo and leaderPvpRatingInfo.rating or 0)
-    else
-        self:SetRatingToShow(leaderOverallDungeonScore or 0)
-    end
 
     if not self:UpdateCustomData(comment, title) then
         return false
@@ -278,7 +256,7 @@ function Activity:Match(filters)
             if filter.min and filter.min ~= 0 and value < filter.min then
                 return false
             end
-            if filter.max and (filter.max ~= 0 or (key == 'BossKilled' and filter.min == 0)) and value > filter.max then
+            if filter.max and filter.max ~= 0 and value > filter.max then
                 return false
             end
         end

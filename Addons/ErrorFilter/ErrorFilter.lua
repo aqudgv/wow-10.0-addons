@@ -1,4 +1,4 @@
---------------------------------------------------------------------------------------------------------
+﻿--------------------------------------------------------------------------------------------------------
 --                                             Localized global                                       --
 --------------------------------------------------------------------------------------------------------
 local _G = getfenv(0)
@@ -852,29 +852,42 @@ function addon:ShowConfig()
 end
 
 -- Check options and set events
-function addon:UpdateEvents()
-	if profileDB.removeFrame then
-		UIErrorsFrame:Hide()
-		self:UnregisterEvent("UI_INFO_MESSAGE")
+function addon:UpdateEvents(close)
+	if close then
+		UIErrorsFrame:RegisterEvent("UI_ERROR_MESSAGE")
 		self:UnregisterEvent("UI_ERROR_MESSAGE")
 	else
-		UIErrorsFrame:Show()
-		-- INFO
-		if profileDB.q_mode == DO_NOTHING then
-			UIErrorsFrame:RegisterEvent("UI_INFO_MESSAGE")
+		if profileDB.removeFrame then
+			UIErrorsFrame:Hide()
 			self:UnregisterEvent("UI_INFO_MESSAGE")
-		else
-			UIErrorsFrame:UnregisterEvent("UI_INFO_MESSAGE")
-			self:RegisterEvent("UI_INFO_MESSAGE","OnInfoMessage", self)
-		end
-		-- ERROR
-		if profileDB.mode == DO_NOTHING then
-			UIErrorsFrame:RegisterEvent("UI_ERROR_MESSAGE")
 			self:UnregisterEvent("UI_ERROR_MESSAGE")
 		else
-			UIErrorsFrame:UnregisterEvent("UI_ERROR_MESSAGE")
-			self:RegisterEvent("UI_ERROR_MESSAGE","OnErrorMessage", self)
+			UIErrorsFrame:Show()
+			-- INFO
+			if profileDB.q_mode == DO_NOTHING then
+				UIErrorsFrame:RegisterEvent("UI_INFO_MESSAGE")
+				self:UnregisterEvent("UI_INFO_MESSAGE")
+			else
+				UIErrorsFrame:UnregisterEvent("UI_INFO_MESSAGE")
+				self:RegisterEvent("UI_INFO_MESSAGE","OnInfoMessage", self)
+			end
+			-- ERROR
+			if profileDB.mode == DO_NOTHING then
+				UIErrorsFrame:RegisterEvent("UI_ERROR_MESSAGE")
+				self:UnregisterEvent("UI_ERROR_MESSAGE")
+			else
+				UIErrorsFrame:UnregisterEvent("UI_ERROR_MESSAGE")
+				self:RegisterEvent("UI_ERROR_MESSAGE","OnErrorMessage", self)
+			end
 		end
+	end
+end
+
+function ErrorFilter_Toggle(switch)
+	if switch then
+		addon:UpdateEvents()
+	else
+		addon:UpdateEvents(1)
 	end
 end
 

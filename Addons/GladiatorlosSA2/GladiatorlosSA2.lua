@@ -24,11 +24,13 @@
 
  local GSA_LOCALEPATH = {
 	enUS = "GladiatorlosSA2\\Voice_enUS",
+	zhCN = "GladiatorlosSA2\\Voice_zhCN"
  }
  self.GSA_LOCALEPATH = GSA_LOCALEPATH
 
  local GSA_LANGUAGE = {
 	["GladiatorlosSA2\\Voice_enUS"] = L["English(female)"],
+	["GladiatorlosSA2\\Voice_zhCN"] = L["Chinese(female)"],
  }
  self.GSA_LANGUAGE = GSA_LANGUAGE
 
@@ -143,6 +145,41 @@
 	2197	-- Korrak's Revenge
  }
 
+ local dbDefaults = {
+	profile = {
+		all = false,
+		arena = true,
+		battleground = true,
+		epicbattleground = false,
+		field = false,
+		path = GSA_LOCALEPATH[GetLocale()] or "GladiatorlosSA2\\Voice_enUS",
+		path_menu = GSA_LOCALEPATH[GetLocale()] or "GladiatorlosSA2\\Voice_enUS",
+		throttle = 0,
+		smartDisable = false,
+		outputUnlock = false,
+		output_menu = "MASTER",
+		seenExperimentalWarning = false;
+		
+		aruaApplied = false,
+		aruaRemoved = false,
+		castStart = false,
+		castSuccess = false,
+		interrupt = false,
+
+		aonlyTF = false,
+		conlyTF= false,
+		sonlyTF = false,
+		ronlyTF = false,
+		drinking = false,
+		class = false,
+		connected = false,
+		interruptedfriendly = true,
+		ShatteringThrowSuccess = false,
+		
+		custom = {},
+	}	
+ }
+
  GSA.log = function(msg) DEFAULT_CHAT_FRAME:AddMessage("|cFF33FF22GladiatorlosSA|r: "..msg) end
 
  -- LSM BEGIN / inspired from MSBTMedia.lua
@@ -165,40 +202,6 @@
  -- LSM END
 
  function GladiatorlosSA:OnInitialize()
-	local dbDefaults = {
-		profile = {
-			all = false,
-			arena = true,
-			battleground = true,
-			epicbattleground = false,
-			field = false,
-			path = GSA_LOCALEPATH[GetLocale()] or "GladiatorlosSA2\\Voice_enUS",
-			path_menu = GSA_LOCALEPATH[GetLocale()] or "GladiatorlosSA2\\Voice_enUS",
-			throttle = 0,
-			smartDisable = false,
-			outputUnlock = false,
-			output_menu = "MASTER",
-			seenExperimentalWarning = false;
-			
-			aruaApplied = false,
-			aruaRemoved = false,
-			castStart = false,
-			castSuccess = false,
-			interrupt = false,
-
-			aonlyTF = false,
-			conlyTF= false,
-			sonlyTF = false,
-			ronlyTF = false,
-			drinking = false,
-			class = false,
-			connected = false,
-			interruptedfriendly = true,
-			ShatteringThrowSuccess = false,
-			
-			custom = {},
-		}	
-	}
 	self:SetExpansion()
 
 	for _,v in pairs(self.spellList) do
@@ -262,12 +265,19 @@
 	AceConfigDialog:AddToBlizOptions("GladiatorlosSA_bliz", "GladiatorlosSA")
 	LSM.RegisterCallback(LSM_GSA_SOUNDFILES, "LibSharedMedia_Registered", LSMRegistered)
 	self:OnOptionCreate()
- end
+	if (IsAddOnLoaded("GladiatorlosSA2")) then		--bf@178.com
+		self:ADDON_LOADED("ADDON_LOADED", "GladiatorlosSA2");
+	else
+		self:RegisterEvent("ADDON_LOADED");
+	end
+end
 
  function GladiatorlosSA:OnEnable()
 	GladiatorlosSA:RegisterEvent("PLAYER_ENTERING_WORLD")
+--[[bf@178.com
 	GladiatorlosSA:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 	GladiatorlosSA:RegisterEvent("UNIT_AURA")
+]]
 	GladiatorlosSA:RegisterEvent("DUEL_REQUESTED")
 	GladiatorlosSA:RegisterEvent("DUEL_FINISHED")
 	GladiatorlosSA:RegisterEvent("CHAT_MSG_SYSTEM")
@@ -582,3 +592,26 @@ function GladiatorlosSA:DUEL_REQUESTED(event, playerName)
 
 
  end
+
+
+
+-- [[bf@178.com
+function GladiatorlosSA:ADDON_LOADED(event, addon)
+	if (addon == "GladiatorlosSA2") then
+		local EnableGladiatorlosSA = BigFoot_GetModVariable("ArenaMod", "EnableGladiatorlosSA");
+		if (EnableGladiatorlosSA == 1) then
+			self:Toggle(true);
+		end
+	end
+end
+
+function GladiatorlosSA:Toggle(switch)
+	if (switch) then
+		self:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+		self:RegisterEvent("UNIT_AURA");
+	else
+		self:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED");
+		self:UnregisterEvent("UNIT_AURA");
+	end
+end
+-- ]]

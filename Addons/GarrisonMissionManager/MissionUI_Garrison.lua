@@ -1,4 +1,3 @@
-do return end
 local addon_name, addon_env = ...
 if not addon_env.load_this then return end
 
@@ -215,7 +214,7 @@ local function GarrisonInitUI()
    end
 
    hooksecurefunc(GarrisonMissionFrame.MissionTab.MissionList,            "Update", GarrisonMissionFrame_MissionList_Update_More)
-   hooksecurefunc(GarrisonMissionFrame.MissionTab.MissionList.listScroll, "update", GarrisonMissionFrame_MissionList_Update_More)
+   -- hooksecurefunc(GarrisonMissionFrame.MissionTab.MissionList.listScroll, "update", GarrisonMissionFrame_MissionList_Update_More)
 
    hooksecurefunc(GarrisonMissionFrame.FollowerList, "UpdateData", addon_env.GarrisonFollowerList_Update_More)
 

@@ -77,6 +77,7 @@ L["Alert works anywhere else then anena, BG, dungeon instance"] = "Alerts occur 
 L["Voice config"] = "Voice Options"
 L["Voice language"] = true
 L["Select language of the alert"] = true
+L["Chinese(Yike Xia)"] = true
 L["Chinese(female)"] = true
 L["English(female)"] = "English (Female)"
 L["adjusting the voice volume(the same as adjusting the system master sound volume)"] = "Adjusts the voice's volume.|n|nNOTE: The voice uses the client's Master channel. You may need to adjust your other sound options accordingly."

@@ -5,10 +5,6 @@
 ## LoadOnDemand: 1
 ## Dependencies: Details
 ## SavedVariables: DetailsDataStorage
+## X-Revision: BigFoot
 
 Details_DataStorage.lua
-
-## Title: |cff880303[163UI]|r Details_DataStorage
-## Title-zhCN: |cff880303[有爱]|r Details 数据模块
-## X-Vendor: NetEase
-## X-163UI-Version: 20221128165246

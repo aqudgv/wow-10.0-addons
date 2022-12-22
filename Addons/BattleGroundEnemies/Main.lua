@@ -3066,7 +3066,7 @@ do
 
 		LibChangelog:Register(AddonName, Data.changelog, self.db.profile, "lastReadVersion", "onlyShowWhenNewVersion")
 
-		LibChangelog:ShowChangelog(AddonName)
+		-- LibChangelog:ShowChangelog(AddonName)	bf@178.com
 
 
 		PopulateMainframe(PlayerTypes.Allies)

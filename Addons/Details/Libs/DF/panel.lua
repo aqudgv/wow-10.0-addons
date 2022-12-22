@@ -2998,7 +2998,7 @@ local chart_panel_add_data = function(self, graphicData, color, name, elapsedTim
 		chartPanel:AddLabel(color or line_default_color, name, "graphic", #chartPanel.GData)
 	end
 
-	local newLineTexture = "Interface\\AddOns\\Details\\Libs\\LibGraph-2.0\\line"
+	local newLineTexture = "Interface\\AddOns\\!!!Libs\\LibGraph-2.0\\line"		-- bf@178.com
 
 	if (firstIndex) then
 		table.insert(LibGraphChartFrame.Data, 1, {Points = builtData, Color = color or line_default_color, lineTexture = newLineTexture, ElapsedTime = elapsedTime})
@@ -8035,7 +8035,6 @@ detailsFramework.CastFrameFunctions = {
 		--update spark position
 		local sparkPosition = self.value / self.maxValue * self:GetWidth()
 		self.Spark:SetPoint("center", self, "left", sparkPosition + self.Settings.SparkOffset, 0)
-		
 
 		--in order to allow the lazy tick run, it must return true, it tell that the cast didn't finished
 		return true

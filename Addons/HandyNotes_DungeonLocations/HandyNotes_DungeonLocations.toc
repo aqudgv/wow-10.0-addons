@@ -1,15 +1,17 @@
 ## Interface: 100002
 ## Title: HandyNotes: DungeonLocations
+## Title-zhCN: [大脚][集]地图标记_副本坐标
+## Title-zhTW: [大腳][集]地圖標記_副本坐标
 ## Version: 1.55a
 ## Notes: Shows locations of old world dungeon and raid entrances
+## Notes-zhCN: |cff00ff00HandyNotes_DungeonLocations|r
+## Notes-zhTW: |cff00ff00HandyNotes_DungeonLocations|r
 ## Author: Caliaha of Cairne
 ## RequiredDeps: HandyNotes
 ## X-Curse-Project-ID: 102768
 ## SavedVariables: HandyNotes_DungeonLocationsDB
+## X-Revision: BigFoot
 
 locales\Locales.xml
+
 HandyNotes_DungeonLocations.lua
-## Title: |cff880303[163UI]|r HandyNotes_DungeonLocations
-## Title-zhCN: |cff880303[有爱]|r HandyNotes 副本入口
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401

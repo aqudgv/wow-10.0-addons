@@ -619,11 +619,3 @@
 			Details:SendGuildData(Details.network.ids.VERSION_CHECK, Details.build_counter)
 		end
 	end
-
-	if Details and Details.network then
-		function Details.network.Update_VersionReceived()
-		end
-		if Details.network.functions and CONST_VERSION_CHECK then
-			Details.network.functions[CONST_VERSION_CHECK] = Details.network.Update_VersionReceived;
-		end
-	end

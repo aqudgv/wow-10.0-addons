@@ -1,17 +1,15 @@
 ## Interface: 100002
 ## Title: HandyNotes: Dragonflight
-## Version: 22
+## Title-zhCN: [大脚][集]地图标记_巨龙时代
+## Title-zhTW: [大腳][集]地圖標記_巨龙时代
+## Version: 24
 ## Notes: Dragonflight Notes
-## OptionalDeps: Ace3
+## Notes-zhCN: |cff00ff00HandyNotes_Dragonflight|r
+## Notes-zhTW: |cff00ff00HandyNotes_Dragonflight|r
 ## RequiredDeps: HandyNotes
-## X-Embeds: Ace3
 ## SavedVariables: HandyNotes_DragonflightDB
+## X-Revision: BigFoot
 
 embeds.xml
 core\core.xml
 plugin.xml
-
-## Title: |cff880303[163UI]|r HandyNotes_Dragonflight
-## Title-zhCN: |cff880303[有爱]|r HandyNotes 巨龙时代
-## X-Vendor: NetEase
-## X-163UI-Version: 20221216164606

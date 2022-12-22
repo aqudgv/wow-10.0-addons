@@ -10,7 +10,7 @@
 	<CheckButton name = "TrinketMenuMainTrinketTemplate" inherits = "ActionButtonTemplate,SecureActionButtonTemplate" virtual = "true">
 		<Scripts>
 			<OnLoad>
-				self:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+				self:RegisterForClicks("AnyDown")
 				self.cooldown:SetSwipeColor(0, 0, 0, 0.8)
 			</OnLoad>
 			<PostClick>
@@ -80,7 +80,7 @@
 	<!-- MainFrame: Equipped Trinkets -->
 	<Frame name = "TrinketMenu_MainFrame" toplevel = "true" frameStrata = "BACKGROUND" enableMouse = "true" movable = "true" parent = "UIParent" hidden = "true" inherits = "TrinketMenuBackdropTemplate">
 		<Size>
-			<AbsDimension x = "91" y = "52" />
+			<AbsDimension x = "91" y = "51" />
 		</Size>
 		<KeyValues>
 			<KeyValue key = "backdropInfo" value = "TRINKETMENU_BACKDROP_16_16_4444" type = "global"/>
@@ -92,7 +92,6 @@
 				</Offset>
 			</Anchor>
 		</Anchors>
-
 		<Layers>
 			<Layer level = "OVERLAY">
 				<Texture name = "TrinketMenu_MainDock_TOPRIGHT" file = "Interface\Tooltips\UI-Tooltip-Border" alphaMode = "ADD" hidden = "true">
@@ -135,28 +134,21 @@
 		</Layers>
 		<Frames>
 			<CheckButton name = "TrinketMenu_Trinket0" inherits = "TrinketMenuMainTrinketTemplate" id = "13">
-				<Size>
-					<AbsDimension x = "36" y = "36" />
-				</Size>
 				<Anchors>
-					<Anchor point = "TOPLEFT">
+					<Anchor point = "LEFT">
 						<Offset>
-							<AbsDimension x = "8" y = "-8"/>
+							<AbsDimension x = "0" y = "0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
 			</CheckButton>
 			<Frame parent = "TrinketMenu_Trinket0" inherits = "TrinketMenuTimeTemplate"/>
 			<Frame parent = "TrinketMenu_Trinket0" inherits = "TrinketMenuQueueTemplate"/>
-
 			<CheckButton name = "TrinketMenu_Trinket1" inherits = "TrinketMenuMainTrinketTemplate" id = "14">
-				<Size>
-					<AbsDimension x = "36" y = "36" />
-				</Size>
 				<Anchors>
-					<Anchor point = "BOTTOMRIGHT">
+					<Anchor point = "RIGHT">
 						<Offset>
-							<AbsDimension x = "-8" y = "8"/>
+							<AbsDimension x = "0" y = "0"/>
 						</Offset>
 					</Anchor>
 				</Anchors>
@@ -165,7 +157,8 @@
 			<Frame parent = "TrinketMenu_Trinket1" inherits = "TrinketMenuQueueTemplate"/>
 		</Frames>
 		<Scripts>
-			<OnLoad>
+			<OnLoad inherit="prepend">
+				RegisterForSaveFrame(self);
 				TrinketMenu.OnLoad(self)
 			</OnLoad>
 			<OnEvent>
@@ -300,7 +293,8 @@
 			<Frame parent = "TrinketMenu_Menu30" inherits = "TrinketMenuTimeTemplate"/>
 		</Frames>
 		<Scripts>
-			<OnLoad>
+			<OnLoad inherit="prepend">
+				RegisterForSaveFrame(self);
 				self:OnBackdropLoaded()
 				self:SetBackdropColor(0.0, 0.0, 0.0)
 				self:SetBackdropBorderColor(0.0, 0.0, 0.0)

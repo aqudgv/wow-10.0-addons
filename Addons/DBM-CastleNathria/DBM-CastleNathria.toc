@@ -1,10 +1,9 @@
 ## Interface: 100002
-## X-Min-Interface: 90005
-## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Castle Nathria|r
-## Title-koKR:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0나스리아 성채|r
-## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0納撒亞城|r
-## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0纳斯利亚堡|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Замок Нафрия|r
+## X-Min-Interface: 90002
+## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0CastleNathria|r
+## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r SL-納撒亞城
+## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r SL-纳斯利亚堡
+## Notes:|cff00ff00DBM-CastleNathria|r
 ## Author: MysticalOS
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
@@ -14,13 +13,19 @@
 ## X-DBM-Mod-Type: RAID
 ## X-DBM-Mod-Category: SHADOWLANDS
 ## X-DBM-StatTypes: lfr,normal,heroic,mythic
+## X-DBM-Mod-Name: Castle Nathria
+## X-DBM-Mod-Name-zhTW: 納撒亞城
+## X-DBM-Mod-Name-zhCN: 纳斯利亚堡
 ## X-DBM-Mod-Sort: 308
 ## X-DBM-Mod-MapID: 2296
 ## X-DBM-Mod-MinCoreRevision: 17286
 ## X-DBM-Mod-MinExpansion: 8
+## X-Revision: BigFoot
+
 localization.en.lua
 localization.tw.lua
 localization.cn.lua
+
 Shriekwing.lua
 AltimortheHuntsman.lua
 Kaelthas.lua
@@ -32,6 +37,3 @@ Sludgefist.lua
 StoneborneGenerals.lua
 SireDenathrius.lua
 CastleNathriaTrash.lua
-
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401

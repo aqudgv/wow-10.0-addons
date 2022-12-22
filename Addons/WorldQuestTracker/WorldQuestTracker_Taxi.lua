@@ -173,7 +173,7 @@ function WorldQuestTracker:TAXIMAP_OPENED()
 		if (not WorldQuestTracker.db.profile.TutorialTaxyMap) then
 			local alert = CreateFrame ("frame", "WorldQuestTrackerTaxyTutorial", checkboxShowTrackedOnly.widget, "MicroButtonAlertTemplate_BFA")
 			alert:SetFrameLevel(302)
-			alert.label = "Options are here, show all quests or only those being tracked"
+			alert.label = L["Options are here, show all quests or only those being tracked"]
 			alert.Text:SetSpacing (4)
 			MicroButtonAlert_SetText (alert, alert.label)
 			alert:SetPoint("bottom", checkboxShowTrackedOnly.widget, "top", 0, 30)

@@ -1,4 +1,4 @@
-local abs = abs
+﻿local abs = abs
 local math = math
 local max = max
 local pairs = pairs
@@ -35,16 +35,17 @@ Gladius = { }
 Gladius.eventHandler = CreateFrame("Frame")
 Gladius.eventHandler.events = { }
 
-Gladius.eventHandler:RegisterEvent("PLAYER_LOGIN")
+Gladius.eventHandler:RegisterEvent("ADDON_LOADED")
 if not IsWrathClassic then
 	Gladius.eventHandler:RegisterEvent("ARENA_PREP_OPPONENT_SPECIALIZATIONS")
 end
 
 Gladius.eventHandler:SetScript("OnEvent", function(self, event, ...)
-	if event == "PLAYER_LOGIN" then
+		--Terry@bf 启动 问题处理
+	if (event =="ADDON_LOADED") and select(1,...) == "Gladius" then
 		Gladius:OnInitialize()
 		Gladius:OnEnable()
-		Gladius.eventHandler:UnregisterEvent("PLAYER_LOGIN")
+		Gladius.eventHandler:UnregisterEvent("ADDON_LOADED")
 	else
 		local func = self.events[event]
 		if type(Gladius[func]) == "function" then
@@ -361,17 +362,18 @@ function Gladius:OnEnable()
 		end
 	end
 	-- display help message
-	if not self.db.locked and not self.db.x["arena1"] and not self.db.y["arena1"] then
-		SlashCmdList["GLADIUS"]("test 5")
-		self:Print(L["Welcome to Gladius!"])
-		self:Print(L["First run has been detected, displaying test frame."])
-		self:Print(L["Valid slash commands are:"])
-		self:Print(L["/gladius ui"])
-		self:Print(L["/gladius test 2-5"])
-		self:Print(L["/gladius hide"])
-		self:Print(L["/gladius reset"])
-		self:Print(L["If this is not your first run please lock or move the frame to prevent this from happening."])
-	end
+	-- if not self.db.locked and not self.db.x["arena1"] and not self.db.y["arena1"] then
+		-- SlashCmdList["GLADIUS"]("test 5")
+		-- self:Print(L["Welcome to Gladius!"])
+		-- self:Print(L["First run has been detected, displaying test frame."])
+		-- self:Print(L["Valid slash commands are:"])
+		-- self:Print(L["/gladius ui"])
+		-- self:Print(L["/gladius test 2-5"])
+		-- self:Print(L["/gladius hide"])
+		-- self:Print(L["/gladius reset"])
+		-- self:Print(L["If this is not your first run please lock or move the frame to prevent this from happening."])
+	-- end
+
 	-- see if we are already in arena
 	if IsLoggedIn() then
 		Gladius:ZONE_CHANGED_NEW_AREA()
@@ -577,8 +579,8 @@ function Gladius:HideFrame()
 
 	-- hide anchor
 	if self.anchor then
-		--self.anchor:SetAlpha(0)
-		self.anchor:Hide()
+		self.anchor:SetAlpha(0)		--bf@178.com
+		-- self.anchor:Hide()		--bf@178.com
 	end
 end
 
@@ -882,7 +884,7 @@ function Gladius:CreateButton(unit)
 	local secure = CreateFrame("Button", "GladiusButton"..unit, button, "SecureActionButtonTemplate")
 	secure:EnableMouse(true)
 	secure:EnableKeyboard(true)
-	secure:RegisterForClicks("AnyUp")
+	secure:RegisterForClicks("AnyUp", "AnyDown")
 	button.secure = secure
 	-- clique
 	ClickCastFrames = ClickCastFrames or {}

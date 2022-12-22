@@ -1252,9 +1252,9 @@ WorldQuestTracker.ZoneSumaryWidgets = {}
 ZoneSumaryFrame.Header = CreateFrame ("frame", "WorldQuestTrackerSummaryHeader", ZoneSumaryFrame, "ObjectiveTrackerHeaderTemplate")
 ZoneSumaryFrame.Header:SetAlpha(0)
 ZoneSumaryFrame.Header.Title = ZoneSumaryFrame.Header:CreateFontString (nil, "overlay", "GameFontNormal")
-ZoneSumaryFrame.Header.Title:SetText ("Quest Summary")
+ZoneSumaryFrame.Header.Title:SetText (L["Quest Summary"])
 ZoneSumaryFrame.Header.Desc = ZoneSumaryFrame.Header:CreateFontString (nil, "overlay", "GameFontNormal")
-ZoneSumaryFrame.Header.Desc:SetText ("Click to Add to Tracker")
+ZoneSumaryFrame.Header.Desc:SetText (L["Click to Add to Tracker"])
 ZoneSumaryFrame.Header.Desc:SetAlpha(.7)
 ZoneSumaryFrame.Header:SetPoint("bottomleft", ZoneSumaryFrame, "topleft", 20, 0)
 

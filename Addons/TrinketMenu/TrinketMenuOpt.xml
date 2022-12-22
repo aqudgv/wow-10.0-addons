@@ -57,11 +57,12 @@
 		</Anchors>
 		<Scripts>
 			<OnLoad>
+				RegisterForSaveFrame(self);
 				self:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 				self:RegisterForDrag("LeftButton")
 			</OnLoad>
 			<OnEnter>
-				TrinketMenu.OnTooltip(self,"TrinketMenu",(TrinketMenuOptions.DisableToggle == "ON") and "Click: toggle options\nDrag: move icon" or "Left click: toggle trinkets\nRight click: toggle options\nDrag: move icon")
+				TrinketMenu.OnTooltip(self,"TrinketMenu",(TrinketMenuOptions.DisableToggle=="ON") and TrinketMenu.Tooltip1 or TrinketMenu.Tooltip2)
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide()
@@ -158,7 +159,7 @@
 					<TexCoords left = ".875" right = "1" top = ".125" bottom = ".25"/>
 				</PushedTexture>
 			</Button>
-			<Button name = "TrinketMenu_Tab1" inherits = "TrinketMenu_TabTemplate" text = "设置" id = "1">
+			<Button name = "TrinketMenu_Tab1" inherits = "TrinketMenu_TabTemplate" text = "Options" id = "1">
 				<Anchors>
 					<Anchor point = "TOPRIGHT">
 						<Offset>

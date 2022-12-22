@@ -112,7 +112,7 @@ function LfgService:LFG_LIST_SEARCH_RESULTS_RECEIVED(event)
 
     local applications = C_LFGList.GetApplications()
 
-    self.activityApps = self.activityApps or {} --abyui 9.1.5 applications also in SearchResults
+    self.activityApps = self.activityApps or {}
     table.wipe(self.activityApps)
 
     for _, id in ipairs(applications) do

@@ -3,22 +3,13 @@
 ## Notes: Essential tool to impress that chick in your raid.
 ## SavedVariables: _detalhes_global, __details_backup
 ## SavedVariablesPerCharacter: _detalhes_database
-## OptionalDeps: Ace3, LibSharedMedia-3.0, LibWindow-1.1, LibDBIcon-1.0, NickTag-1.0, LibDataBroker-1.1, LibGraph-2.0
 ## Version: #Details.DF.Wrath.10337.148
+## Dependencies: !!!Libs
+## X-Revision: BigFoot
 
-#@no-lib-strip@
 Libs\libs.xml
-#@end-no-lib-strip@
 
 locales\Details-enUS.lua
-locales\Details-deDE.lua
-locales\Details-esES.lua
-locales\Details-esMX.lua
-locales\Details-frFR.lua
-locales\Details-itIT.lua
-locales\Details-koKR.lua
-locales\Details-ptBR.lua
-locales\Details-ruRU.lua
 locales\Details-zhCN.lua
 locales\Details-zhTW.lua
 
@@ -144,10 +135,3 @@ functions\loaddata.lua
 startup.lua
 
 functions\api2.lua
-
-## Title: |cff880303[163UI]|r Details
-## Title-zhCN: |cff880303[有爱]|r Details 伤害统计
-## Notes-zhCN: Details伤害/治疗统计插件.
-## Notes-zhTW: Details傷害/治療統計插件.
-## X-Vendor: NetEase
-## X-163UI-Version: 20221216164606

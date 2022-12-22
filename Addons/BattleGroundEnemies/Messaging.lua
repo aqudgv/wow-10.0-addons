@@ -227,7 +227,7 @@ function BattleGroundEnemies:CHAT_MSG_ADDON(addonPrefix, message, channel, sende
 	local msgPrefix, msg = strsplit("^", message)
 	sender = Ambiguate(sender, "none")
 	if msgPrefix == "V" or msgPrefix == "Q" then
-		self:UpdateVersions(sender, msgPrefix, msg)
+		-- self:UpdateVersions(sender, msgPrefix, msg)	bf@178.com
 	end
 end
 

@@ -2,7 +2,7 @@ local HandyNotes = LibStub("AceAddon-3.0"):GetAddon("HandyNotes", true)
 if not HandyNotes then return end
 local L = LibStub("AceLocale-3.0"):GetLocale("HandyNotes_DungeonLocations")
 
-icons = { }
+local icons = { }
 icons["Dungeon"] = "Interface\\MINIMAP\\Dungeon"
 icons["Raid"] = "Interface\\MINIMAP\\Raid"
 icons["Mixed"] = "Interface\\Addons\\HandyNotes_DungeonLocations\\merged.tga"
@@ -42,9 +42,9 @@ function pluginHandler:OnEnter(uiMapId, coord)
 	if (nodes[uiMapId] and nodes[uiMapId][coord]) then
 	 nodeData = nodes[uiMapId][coord]
 	end
-	
+
 	if (not nodeData) then return end
-	
+
 	local tooltip = self:GetParent() == WorldMapButton and WorldMapTooltip or GameTooltip
 	if ( self:GetCenter() > UIParent:GetCenter() ) then -- compare X coordinate
 		tooltip:SetOwner(self, "ANCHOR_LEFT")
@@ -55,10 +55,10 @@ function pluginHandler:OnEnter(uiMapId, coord)
     if (not nodeData.name) then return end
 
 	local instances = { strsplit("\n", nodeData.name) }
-	
+
 
 	updateLockouts()
-	
+
 	for i, v in pairs(instances) do
 	 --print(i, v)
 	 if (db.lockouts and (LOCKOUTS[v] or (alterName[v] and LOCKOUTS[alterName[v]]))) then
@@ -92,7 +92,7 @@ end
 
 do
 	local tablepool = setmetatable({}, {__mode = 'k'})
-	
+
 	local function deepCopy(object)
 		local lookup_table = {}
 		local function _copy(object)
@@ -120,7 +120,7 @@ do
 		while value do
 			--print(t.minimapUpdate, value.showInZone)
 			local alpha
-			
+
 			local allLocked = true
 			local anyLocked = false
 			if value.name == nil then value.name = value.id end
@@ -134,7 +134,7 @@ do
 			end
 			local icon = icons[value.type]
 			-- I feel like this inverted lockout thing could be done far better
-			if ((anyLocked and db.invertlockout) or (allLocked and not db.invertlockout) and db.lockoutgray) then   
+			if ((anyLocked and db.invertlockout) or (allLocked and not db.invertlockout) and db.lockoutgray) then
 				icon = icons["Locked"]
 			end
 			if ((anyLocked and db.invertlockout) or (allLocked and not db.invertlockout) and db.uselockoutalpha) then
@@ -142,7 +142,7 @@ do
 			else
 				alpha = db.zoneAlpha
 			end
-			
+
 			--print('Minimap', t.minimapUpdate, legionInstancesDiscovered[value.id])
 			if t.minimapUpdate or value.showInZone then
 			 return state, nil, icon, db.zoneScale, alpha
@@ -179,9 +179,9 @@ do
 							anyLocked = true
 						end
 					end
-	  
+
 					-- I feel like this inverted lockout thing could be done far better
-					if ((anyLocked and db.invertlockout) or (allLocked and not db.invertlockout) and db.lockoutgray) then   
+					if ((anyLocked and db.invertlockout) or (allLocked and not db.invertlockout) and db.lockoutgray) then
 						icon = icons["Locked"]
 					end
 					if ((anyLocked and db.invertlockout) or (allLocked and not db.invertlockout) and db.uselockoutalpha) then
@@ -273,12 +273,12 @@ function pluginHandler:OnClick(button, pressed, uiMapId, coord)
   else
    dungeonID = nodes[uiMapId][coord].id
   end
-  
+
   if (not dungeonID) then return end
 
   local name, _, _, _, _, _, _, link = EJ_GetInstanceInfo(dungeonID)
   if not link then return end
-  local difficulty = string.match(link, 'journal:.-:.-:(.-)|h') 
+  local difficulty = string.match(link, 'journal:.-:.-:(.-)|h')
   if (not dungeonID or not difficulty) then return end
   EncounterJournal_OpenJournal(difficulty, dungeonID)
  end
@@ -332,7 +332,7 @@ function Addon:PLAYER_ENTERING_WORLD()
   self:PopulateMinimap()
   self:ProcessTable()
  end
- 
+
  updateLockouts()
  self:CheckForPOIs()
  updateStuff()
@@ -341,7 +341,7 @@ end
 function Addon:PLAYER_LOGIN()
  local options = {
  type = "group",
- name = "DungeonLocations",
+ name = "副本坐标",
  desc = "Locations of dungeon and raid entrances.",
  get = function(info) return db[info[#info]] end,
  set = function(info, v) db[info[#info]] = v HandyNotes:SendMessage("HandyNotes_NotifyUpdate", "DungeonLocations") end,
@@ -536,7 +536,7 @@ function Addon:PLAYER_LOGIN()
  HandyNotes:RegisterPluginDB("DungeonLocations", pluginHandler, options)
  self.db = LibStub("AceDB-3.0"):New("HandyNotes_DungeonLocationsDB", defaults, true)
  db = self.db.profile
- 
+
  Addon:RegisterEvent("PLAYER_ENTERING_WORLD") -- Check for any lockout changes when we zone
 end
 
@@ -573,7 +573,7 @@ table.wipe(minimap)
 --  hideOnContinent = true/false
 --  hideOnMinimap = true/false, since I've redid some things, the function that puts nodes on the minimap only considers nodes to be the same if the have the same coordinates
 --  lfgid = { }, Either one id for single or multiple id's in table; though I don't know if tables gaurantee order
-    
+
 -- },
 -- VANILLA
 if (not self.db.profile.hideVanilla) then
@@ -596,11 +596,11 @@ nodes[63] = { -- Ashenvale
  }, -- Blackfathom Deeps, not at portal but look
 }
 nodes[15] = { -- Badlands
- [41801130] = { 
+ [41801130] = {
   id = 239,
   type = "Dungeon",
  }, -- Uldaman
- [58463690] = { 
+ [58463690] = {
   id = 239,
   type = "Dungeon",
   hideOnMinimap = true,
@@ -623,7 +623,7 @@ nodes[10] = { -- Barrens
 nodes[36] = { -- BurningSteppes
  [20303260] = {
   id = { 66, 228, 229, 559, 741, 742 },
-  type = "Mixed", 
+  type = "Mixed",
   hideOnContinent = true,
  }, -- Blackrock mountain dungeons and raids
  [23202630] = {
@@ -692,7 +692,7 @@ nodes[69] = { -- Feralas
   showInZone = true,
  }, -- Dire Maul West (probably) One spot between the two actual entrances
  -- Captial Gardens, 60.3 31.3; 60.4 30.7; 60.3 30.1; 429
- -- North Maybe?, 62.5 24.9; 
+ -- North Maybe?, 62.5 24.9;
  [62502490] = {
   id = 230,
   lfgid = 38,
@@ -837,7 +837,7 @@ nodes[52] = { -- Westfall
   }, -- Blackrock mount instances, merged in blackwind descent at continent level
   --[38307750] = { 63,  type = "Dungeon" }, -- Deadmines 43707320,
   [49508190] = {
-   id = { 745, 860 }, 
+   id = { 745, 860 },
    type = "Mixed",
   }, -- Karazhan/Return to Karazhan
  }
@@ -953,7 +953,7 @@ nodes[68] = { -- Maraudon Foulspore Cavern
   id = 232,
   lfgid = 26,
   type = "Dungeon"
- }, -- Maraudon 30205450 
+ }, -- Maraudon 30205450
 
  [44307680] = {
   id = 232,
@@ -1050,7 +1050,7 @@ nodes[108] = { -- TerokkarForest
  [44906560] = {
   id = 252,
   type = "Dungeon",
- }, -- Sethekk Halls World 47707890  Summoning Stone For Auchindoun 39806470, World: 46207860 
+ }, -- Sethekk Halls World 47707890  Summoning Stone For Auchindoun 39806470, World: 46207860
  [39607360] = {
   id = 253,
   type = "Dungeon",
@@ -1842,7 +1842,7 @@ nodes[1355] = {} -- Nazjatar
 nodes[1355][50431199] = { -- The Eternal Palace
 	id = 1179,
 	type = "Raid",
-} 
+}
 
 nodes[862][43323947] = {
  id = 968,
@@ -1951,6 +1951,19 @@ nodes[1161][71961540] = {
 		} -- Siege of Boralus
 --	end ]]--
 end
+	-- bf@178.com
+	local maps = {1525, 1533, 1536, 1543, 1565, 1970, 2022, 2023, 2024, 2025,}
+	for _, mapID in ipairs(maps) do
+		local dungeonEntrances = C_EncounterJournal.GetDungeonEntrancesForMap(mapID);
+		for i, dungeonEntranceInfo in ipairs(dungeonEntrances) do
+			nodes[mapID] = nodes[mapID] or {}
+			local pos = format("%d%d", dungeonEntranceInfo.position.x * 10000, dungeonEntranceInfo.position.y * 10000)
+			local instanceId = dungeonEntranceInfo.journalInstanceID
+			local type = dungeonEntranceInfo.atlasName
+			nodes[mapID][pos] = { id = instanceId, type = type, name = dungeonEntranceInfo.name }
+		end
+	end
+
 end
 
 
@@ -2085,7 +2098,7 @@ for i,v in pairs(nodes) do
    self:UpdateInstanceNames(u)
   end
  end
- 
+
  for i,v in pairs(minimap) do
   for j,u in pairs(v) do
    if (not u.name) then -- Don't process if node was already handled above
@@ -2099,12 +2112,12 @@ end
 function Addon:UpdateInstanceNames(node)
  local dungeonInfo = EJ_GetInstanceInfo
  local id = node.id
- 
+
  if (node.lfgid) then
   dungeonInfo = GetLFGDungeonInfo
   id = node.lfgid
  end
- 
+
  if (type(id) == "table") then
   for i,v in pairs(node.id) do
    local name = dungeonInfo(v)
@@ -2175,7 +2188,7 @@ function Addon:CheckForPOIs()
     needsUpdate = true
   end
  end
-end 
- 
+end
+
  if (needsUpdate) then self:FullUpdate() end
 end

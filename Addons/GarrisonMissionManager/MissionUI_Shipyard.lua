@@ -1,4 +1,3 @@
-do return end
 local addon_name, addon_env = ...
 if not addon_env.load_this then return end
 
@@ -153,7 +152,7 @@ gmm_buttons.StartShipyardMission = MissionPage.StartMissionButton
 local spec_count = {}
 local spec_name = {}
 local spec_list = {}
-hooksecurefunc("GossipFrameOptionsUpdate", function(...)
+hooksecurefunc(GossipFrameMixin,"Update", function(...)
    local guid = UnitGUID("npc")
    if not (guid and (match(guid, "^Creature%-0%-%d+%-%d+%-%d+%-94429%-") or match(guid, "^Creature%-0%-%d+%-%d+%-%d+%-95002%-"))) then return end
 

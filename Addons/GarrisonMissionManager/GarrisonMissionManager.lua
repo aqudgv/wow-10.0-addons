@@ -399,7 +399,7 @@ hooksecurefunc(GarrisonFollowerOptionDropDown, "initialize", function(self)
    local follower = C_Garrison.GetFollowerInfo(followerID)
    if follower and follower.isCollected then
       info_ignore_toggle.arg1 = followerID
-      info_ignore_toggle.text = ignored_followers[followerID] and "GMM: 还原" or "GMM: 忽略"
+      info_ignore_toggle.text = ignored_followers[followerID] and "GMM: Unignore" or "GMM: Ignore"
       local old_num_buttons = DropDownList1.numButtons
       local old_last_button = _G["DropDownList1Button" .. old_num_buttons]
       local old_is_cancel = old_last_button.value == CANCEL
@@ -463,12 +463,12 @@ local function GarrisonFollowerList_Update_More(self)
 end
 hooksecurefunc(GarrisonMissionFrame.FollowerList, "UpdateData", GarrisonFollowerList_Update_More)
 
-GarrisonLandingPageMinimapButton:HookScript("OnClick", function(self, button, down)
+ExpansionLandingPageMinimapButton:HookScript("OnClick", function(self, button, down)
    if not (button == "RightButton" and not down) then return end
    HideUIPanel(GarrisonLandingPage)
    ShowGarrisonLandingPage(LE_GARRISON_TYPE_6_0)
 end)
-GarrisonLandingPageMinimapButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
+ExpansionLandingPageMinimapButton:RegisterForClicks("LeftButtonUp", "RightButtonUp")
 
 gmm_buttons.StartMission = MissionPage.StartMissionButton
 

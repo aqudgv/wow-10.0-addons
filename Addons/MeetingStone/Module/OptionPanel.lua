@@ -78,12 +78,6 @@ function SettingPanel:OnInitialize()
                 width = 'full',
                 order = order(),
             },
-            showClassLine = {
-                type = 'toggle',
-                name = L['职责列表显示职业颜色条'],
-                width = 'full',
-                order = order(),
-            },
             -- ignore = {
             --     type = 'toggle',
             --     name = L['启用屏蔽列表增强'],
@@ -133,7 +127,7 @@ function SettingPanel:OnInitialize()
         }
     }
 
-    local filters = not NO_SCAN_WORD and {
+    local filters = NO_SCAN_WORD and {
         type = 'group',
         name = L['过滤器'],
         get = function(item)

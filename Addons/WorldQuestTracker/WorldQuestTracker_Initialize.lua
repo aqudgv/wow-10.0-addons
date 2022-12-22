@@ -147,7 +147,7 @@ do
 				playsound_volume = 2,
 				playsound_warnings = 0,
 				use_master = true,
-				always_use_english = true,
+				always_use_english = false,
 				add_from_premade = false,
 				autosearch = true,
 				autosearch_cooldown = 600,
@@ -387,12 +387,12 @@ do
 	DF:NewColor ("WQT_ORANGE_RESOURCES_AVAILABLE", 1, .7, .2, .85)
 	DF:NewColor ("WQT_ORANGE_YELLOW_RARE_TITTLE", 1, 0.677059, 0.05, 1)
 
-	DF:InstallTemplate ("font", "WQT_SUMMARY_TITLE", {color = "orange", size = 12, font = "Friz Quadrata TT"})
-	DF:InstallTemplate ("font", "WQT_RESOURCES_AVAILABLE", {color = {1, .7, .2, .85}, size = 10, font = "Friz Quadrata TT"})
-	DF:InstallTemplate ("font", "WQT_GROUPFINDER_BIG", {color = {1, .7, .2, .85}, size = 11, font = "Friz Quadrata TT"})
-	DF:InstallTemplate ("font", "WQT_GROUPFINDER_SMALL", {color = {1, .9, .1, .85}, size = 10, font = "Friz Quadrata TT"})
-	DF:InstallTemplate ("font", "WQT_GROUPFINDER_TRANSPARENT", {color = {1, 1, 1, .2}, size = 10, font = "Friz Quadrata TT"})
-	DF:InstallTemplate ("font", "WQT_TOGGLEQUEST_TEXT", {color = {0.811, 0.626, .109}, size = 10, font = "Friz Quadrata TT"})
+	DF:InstallTemplate ("font", "WQT_SUMMARY_TITLE", {color = "orange", size = 12, font = ChatFontNormal:GetFont()})
+	DF:InstallTemplate ("font", "WQT_RESOURCES_AVAILABLE", {color = {1, .7, .2, .85}, size = 10, font = ChatFontNormal:GetFont()})
+	DF:InstallTemplate ("font", "WQT_GROUPFINDER_BIG", {color = {1, .7, .2, .85}, size = 11, font = ChatFontNormal:GetFont()})
+	DF:InstallTemplate ("font", "WQT_GROUPFINDER_SMALL", {color = {1, .9, .1, .85}, size = 10, font = ChatFontNormal:GetFont()})
+	DF:InstallTemplate ("font", "WQT_GROUPFINDER_TRANSPARENT", {color = {1, 1, 1, .2}, size = 10, font = ChatFontNormal:GetFont()})
+	DF:InstallTemplate ("font", "WQT_TOGGLEQUEST_TEXT", {color = {0.811, 0.626, .109}, size = 10, font = ChatFontNormal:GetFont()})
 
 	DF:InstallTemplate ("button", "WQT_GROUPFINDER_BUTTON", {
 		backdrop = {edgeFile = [[Interface\Buttons\WHITE8X8]], edgeSize = 1, bgFile = [[Interface\Tooltips\UI-Tooltip-Background]], tileSize = 64, tile = true},
@@ -425,20 +425,7 @@ do
 	WorldQuestTrackerAddon.WorldWidgetAlpha = .75
 	WorldQuestTrackerAddon.WorldWidgetSmallAlpha = .75
 
-	local L = LibStub ("AceLocale-3.0"):GetLocale ("WorldQuestTrackerAddon", true)
-	WorldQuestTracker.ChangeLogTable = {
-		{1544645786, "Anchor Changes", "December 13, 2018", "Hover over the zone name in the quest summary for a zone to show options for that anchor."},
-		{1544477110, "World Map Changes", "December 13, 2018", "World map is now aligned in the center of the screen. " .. L["S_MAPBAR_OPTIONS"] .. " > '" .. L["S_OPTIONS_MAPFRAME_ALIGN"] .. "' to disable this."},
-		{1544477110, "World Map Changes", "December 13, 2018", "Quest list is now default to quest type, click '" .. L["S_WORLDBUTTONS_SHOW_ZONE"] .. "' to swap."},
-		{1544477110, "World Map Changes", "December 13, 2018", "Added an arrow button in the quest list to start tracking all quests in that list."},
-		{1544477110, "World Map Changes", "December 13, 2018", "Added faction indicators, SHIFT + Left Click to track all quests for that faction."},
-		{1544477110, "Zone Map Changes", "December 13, 2018", "The fullscreen quest summary is now available in windowed mode."},
-		{1544477110, "General Settings", "December 13, 2018", "Added quest blacklist, access it throught the options menu."},
-		{1544477110, "General Settings", "December 13, 2018", "Added Map Window Scale settings in the options menu."},
-		{1544477110, "General Settings", "December 13, 2018", "Several options added to World Map and Zone Map at the options menu."},
-		--{1544477110, "", "December 13, 2018", ""},
-	}
-
+	WorldQuestTracker.ChangeLogTable = {}
 end
 
 

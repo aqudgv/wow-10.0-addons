@@ -494,6 +494,43 @@ RegEvent("ADDON_LOADED", function()
         lib.MainFrame = MySlot.MainFrame
     end
 
+	--[ [	bf.178.com
+	MySlot_SavedDb = MySlot_SavedDb
+	if MySlot_SavedDb then
+		if not MyslotExports then
+			MyslotExports = {}
+		end
+		if not MyslotExports["exports"] then
+			MyslotExports["exports"] = {}
+		end
+		local exports = MyslotExports["exports"]
+		
+		for i,t in pairs(MySlot_SavedDb) do
+			if t then
+				local tt = {name = t.Sname,value = t.Scheme}
+				table.insert(exports, tt)
+			end
+		end
+		
+		local bf_TODO = false
+		StaticPopupDialogs["bf_UPDATE_TODO"] = {
+			button1 = OKAY,
+			button2 = CANCEL,
+			OnAccept = function()
+				MySlot_SavedDb = nil
+			end,
+			showAlert = 1,
+            preferredIndex = STATICPOPUP_NUMDIALOGS,
+		};
+		StaticPopupDialogs["bf_UPDATE_TODO"].text = "旧按键配置已自动导入至新版本配置中,点击【确定】删除老配置。"
+		f:SetScript("OnShow", function()
+			if MySlot_SavedDb and not bf_TODO then
+				StaticPopup_Show("bf_UPDATE_TODO");
+				bf_TODO = true
+			end
+		end)
+	end
+	--]]
 end)
 
 SlashCmdList["MYSLOT"] = function(msg, editbox)
@@ -531,6 +568,7 @@ StaticPopupDialogs["MYSLOT_MSGBOX"] = {
     whileDead = 1,
     hideOnEscape = 1,
     multiple = 0,
+    preferredIndex = STATICPOPUP_NUMDIALOGS,
 }
 
 StaticPopupDialogs["MYSLOT_EXPORT_TITLE"] = {
@@ -546,6 +584,7 @@ StaticPopupDialogs["MYSLOT_EXPORT_TITLE"] = {
     end,
     OnShow = function()
     end,
+    preferredIndex = STATICPOPUP_NUMDIALOGS,
 }
 
 StaticPopupDialogs["MYSLOT_CONFIRM_DELETE"] = {
@@ -556,10 +595,5 @@ StaticPopupDialogs["MYSLOT_CONFIRM_DELETE"] = {
     whileDead = 1,
     hideOnEscape = 1,
     multiple = 0,
+    preferredIndex = STATICPOPUP_NUMDIALOGS,
 }
-
-RegEvent("ADDON_LOADED", function()
-   _G.MYSLOT_ReportFrame = f;
-   _G.MYSLOT_ScrollFrame = exportEditbox:GetParent();
-   _G.MYSLOT_ReportFrame_EditBox = exportEditbox;
-end)

@@ -1,17 +1,16 @@
 ## Interface: 100002
 ## Title: HandyNotes_LunarFestival
+## Title-zhCN: [大脚][集]地图标记_春节
+## Title-zhTW: [大腳][集]地圖標記_春節
 ## Notes: Displays the locations of Lunar Festival elders.
+## Notes-zhCN: |cff00ff00HandyNotes_LunarFestival|r
+## Notes-zhTW: |cff00ff00HandyNotes_LunarFestival|r
 ## Author: Ravendwyr
 ## Version: v1.6.3
 ## X-Category: Map & Minimap
 ## SavedVariables: HandyNotes_LunarFestivalDB
 ## RequiredDeps: HandyNotes
-## X-Curse-Project-ID: 45902
+## X-Revision: BigFoot
 
 Core.lua
 Data.lua
-
-## Title-zhCN: |cff880303[有爱]|r HandyNotes 春节长者
-## X-Vendor: NetEase
-
-## X-163UI-Version: 20221121172401

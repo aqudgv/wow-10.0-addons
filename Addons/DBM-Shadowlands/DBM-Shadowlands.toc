@@ -1,11 +1,9 @@
 ## Interface: 100002
-## Version: 10.0.2
+## Version: r1
 ## Title:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0World Bosses (Shadowlands)|r
-## Title-esES:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Jefes de Mundo (Shadowlands)|r
-## Title-esMX:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Jefes de Mundo (Shadowlands)|r
-## Title-koKR:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0필드 보스 (어둠땅)|r
-## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0暗影之境|r
-## Title-ruRU:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r |cff69ccf0Мировые боссы (Темные Земли)|r
+## Title-zhCN:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r SL(暗影国度)-世界首领
+## Title-zhTW:|cffffe00a<|r|cffff7d0aDBM|r|cffffe00a>|r SL(暗影之境)-世界首領
+## Notes:|cff00ff00DBM-Shadowlands|r
 ## Author: MysticalOS
 ## LoadOnDemand: 1
 ## RequiredDeps: DBM-Core
@@ -16,27 +14,21 @@
 ## X-DBM-Mod-Category: SHADOWLANDS
 ## X-DBM-StatTypes: normal
 ## X-DBM-Mod-Name: World Bosses (SL)
-## X-DBM-Mod-Name-esES: Jefes de Mundo (SL)
-## X-DBM-Mod-Name-esMX: Jefes de Mundo (SL)
-## X-DBM-Mod-Name-koKR: 필드 보스 (어둠땅)
-## X-DBM-Mod-Name-ruRU: Мировые боссы (Темные Земли)
 ## X-DBM-Mod-World-Boss: 1
 ## X-DBM-Mod-Sort: 310
 ## X-DBM-Mod-MapID: 2222, 2374
 ## X-DBM-Mod-LoadCID: 167524,167525,167527,167526,178958,182466
 ## X-DBM-Mod-MinCoreRevision: 17286
 ## X-DBM-Mod-MinExpansion: 8
-## X-Curse-Project-ID: 3358
-## X-WoWI-ID: 8814
-## X-Wago-ID: qv633o6b
+## X-Curse-Project-ID: 723031
+## X-Wago-ID: RqGYOE6g
+## X-Revision: BigFoot
 
 localization.en.lua
+
 Valinor.lua
 Mortanis.lua
 Oranomonos.lua
 Nurgash.lua
 Morgeth.lua
 Antros.lua
-
-## X-Vendor: NetEase
-## X-163UI-Version: 20221121172401

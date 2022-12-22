@@ -67,7 +67,7 @@ end
 
 local HelperTip
 function SummaryHtml:OpenHelper(id)
-    HelpFrame:Hide()
+    HideUIPanel(HelpFrame)
 
     StaticPopup_Hide('HELP_TICKET')
     StaticPopup_Hide('HELP_TICKET_ABANDON_CONFIRM')
