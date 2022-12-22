@@ -1,0 +1,15 @@
+## Interface: 100002
+## Title: MTG
+## Author: JANY
+## Version: 8.2.0
+## Notes: 渔人兑换(搬运Mrrl's trade game)
+## SavedVariables: MTGDB,j_BuyRareItemOption,j_BuyItemOption,j_Markersize,j_CheckTacoFirst
+
+localization.lua
+MTG.lua
+
+
+## Title-zhCN: |cff880303[有爱]|r HandyNotes 纳沙塔尔鱼人商人兑换
+## X-Vendor: NetEase
+
+## X-163UI-Version: 20221121172401

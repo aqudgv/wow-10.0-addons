@@ -1,0 +1,16 @@
+## Interface: 100002
+## Title: HandyNotes: Visions Of N'Zoth
+## Version: 41
+## Notes: Visions Of N'Zoth Notes
+## OptionalDeps: Ace3
+## RequiredDeps: HandyNotes
+## X-Embeds: Ace3
+## SavedVariables: HandyNotes_VisionsOfNZothDB
+
+embeds.xml
+core\core.xml
+plugin.xml
+
+## Title-zhCN: |cff880303[有爱]|r HandyNotes 恩佐斯的幻象
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

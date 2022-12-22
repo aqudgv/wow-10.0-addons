@@ -1,0 +1,12 @@
+## Interface: 100002
+## Title: Protoform Synthesis
+## Notes: View the mounts you can make at the Protoform Synthesis
+## Version: 1.1.5
+## Author: OlWi (Original by gello3)
+
+ProtoformSynthesis.lua
+
+
+## Title-zhCN: |cff880303[有爱]|r ProtoformSynthesis 原生体合成查看器【旧版本占位】
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

@@ -1,0 +1,25 @@
+## Interface: 100002
+## Title: Details!|Skada Covenants
+## Notes: Show covenant icon
+## Notes-ruRU: Показывает значок ковенанта в Details! или Skada
+## Author: Toenak
+## Version: 1.3.5
+## X-License: MIT
+## X-Curse-Project-ID: 431558
+## SavedVariablesPerCharacter: DCovenant, DCovenantLog
+
+Utils.lua
+SpellIDs.lua
+Oribos.lua
+
+Details.lua
+Skada.lua
+Core.lua
+Commands.lua
+
+## Title: |cff880303[163UI]|r Details_Covenants
+## Title-zhCN: |cff880303[有爱]|r Details/Skada 盟约图标
+## Notes-zhCN: 为Details!和Skada的统计列表上增添盟约图标
+## Notes-zhTW: 为Details!和Skada的统计列表上增添盟约图标
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

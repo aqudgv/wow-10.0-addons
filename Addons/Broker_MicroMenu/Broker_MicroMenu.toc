@@ -1,0 +1,15 @@
+## Interface: 100002
+## Title: Broker: |cff00ff00MicroMenu|r
+## Version: v1.7.5
+## Notes: Shows the micro menu and game menu in a clickable broker tooltip.
+## Author: github.com/Kiatra
+## OptionalDeps: LibQTip-1.0
+## SavedVariables: Broker_MicroMenuDB
+## X-Curse-Project-ID: 21420
+
+
+## Title: |cff880303[163UI]|r Broker_MicroMenu
+## Title-zhCN: |cff880303[有爱]|r Broker 微型菜单
+## Notes-zhCN: 【已废弃】整合进巧克力插件内
+## X-Vendor: NetEase
+## X-163UI-Version: 20221208164536

@@ -1,0 +1,14 @@
+## Interface: 100002
+## Title: Grail |cff69ccf0Reputations |r|cff0000ffRetail|r
+## Author: Scott M Harrison
+## Notes: Provides reputation award information to Grail for Retail
+## Version: 007
+## Dependencies: Grail
+## LoadOnDemand: 1
+
+Grail-Reputations-_retail_.lua
+
+## Title: |cff880303[163UI]|r Grail-Reputations
+## Title-zhCN: |cff880303[有爱]|r Grail 声望奖励模块
+## X-Vendor: NetEase
+## X-163UI-Version: 20221208164536

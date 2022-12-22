@@ -1,0 +1,15 @@
+## Interface: 100002
+## Title: World Quests List
+## Author: ykiigor
+## Version: 105
+## SavedVariables: VWQL
+db.lua
+util.lua
+Arrow.lua
+templates.xml
+games.lua
+WorldQuestsList.lua
+## Title: |cff880303[163UI]|r WorldQuestsList
+## Title-zhCN: |cff880303[有爱]|r World 世界任务列表
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

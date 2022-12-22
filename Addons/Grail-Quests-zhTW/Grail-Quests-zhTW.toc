@@ -1,0 +1,15 @@
+## Interface: 100002
+## Title: Grail |cff69ccf0Quests |r|cff0000ffRetail|r|cff69ccf0 zhTW|r
+## Author: Scott M Harrison
+## Notes: Provides localized zhTW quest names to Grail for Retail
+## Version: 37176
+## Dependencies: Grail
+## LoadOnDemand: 1
+
+Grail-Quests-_retail_-zhTW.lua
+
+## Title: |cff880303[163UI]|r Grail-Quests-zhTW
+## Title-zhCN: |cff880303[有爱]|r Grail 任务名-繁體繁体中文
+## Title-zhTW: |cff880303[有爱]|r Grail 任務名-繁體中文
+## X-Vendor: NetEase
+## X-163UI-Version: 20221208164536

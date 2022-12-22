@@ -1,0 +1,14 @@
+## Interface: 100002
+## Title: Grail |cff69ccf0NPCs |r|cff0000ffRetail|r|cff69ccf0 zhCN|r
+## Author: Scott M Harrison
+## Notes: Provides localized zhCN NPCs to Grail for Retail
+## Version: 27178
+## Dependencies: Grail
+## LoadOnDemand: 1
+
+Grail-NPCs-_retail_-zhCN.lua
+
+## Title: |cff880303[163UI]|r Grail-NPCs-zhCN
+## Title-zhCN: |cff880303[有爱]|r Grail NPC模块-简体中文
+## X-Vendor: NetEase
+## X-163UI-Version: 20221208164536

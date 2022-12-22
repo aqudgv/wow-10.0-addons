@@ -1,0 +1,18 @@
+## Interface: 100002
+## Author: 网易有爱
+## Title: FriendsMenuXP
+## Notes: Greatly extends the player drop down menu without secure taint.
+# localization.enUS.lua
+# localization.zhCN.lua
+# localization.zhTW.lua
+# FriendsMenuXP.xml
+
+popup.lua
+Menus.lua
+
+
+## Title: |cff880303[有爱]|r FriendsM 玩家菜单增强
+## Notes-zhCN: 玩家超链接、查询列表、好友列表、工会列表中点击玩家名字增加更多选择
+## Notes-zhTW: 玩家超鏈結、查詢列表、好友列表、工會列表中點擊玩家名字增加更多選擇
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

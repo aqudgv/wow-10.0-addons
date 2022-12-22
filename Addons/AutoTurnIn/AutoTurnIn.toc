@@ -1,0 +1,38 @@
+## Interface: 100002
+## Title: AutoTurnIn
+## Version: 10.0.14
+## Author: Alex Shubert
+## Notes: Quest handling automation
+## Notes-ruRU: Автоматическая обработка заданий
+## Notes-enUS: Quest handling automation
+## Notes-frFR: Accepte et rend automatiquement les quêtes
+## Notes-deDE: Auto akzeptieren und komplett täglich oder alle Quests
+## Notes-itIT: Italian translators wanted!!!
+## OptionalDeps: Ace3
+## SavedVariables: AutoTurnInDB
+## X-Date: 2016-07-21
+## X-Category: Quest
+## X-Embeds: Ace3
+
+
+
+loc\localization_EN.lua
+loc\localization_CN.lua
+
+RewardsConst.lua
+Defaults.lua
+AutoTurnIn.lua
+QuestLevel.lua
+Merchants.lua
+Utils.lua
+MapCoords.lua
+Cinematics.lua
+
+# ui\main_options.lua
+# ui\reward_options.lua
+
+## Title: |cff880303[163UI]|r AutoTurnIn
+## Title-zhCN: |cff880303[有爱]|r AutoTurnIn 自动交接任务
+## Notes-zhCN: 自动交接任务
+## X-Vendor: NetEase
+## X-163UI-Version: 20221216164606

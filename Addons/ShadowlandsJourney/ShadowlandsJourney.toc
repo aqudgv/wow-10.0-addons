@@ -1,0 +1,11 @@
+## Interface: 100002
+## Title: ShadowlandsJourney
+## Title-zhCN: |cffff565e[网易]|r 暗影界旅程
+## Version: 1.0.1
+## SavedVariables: SHADOWLANDSJOURNEY_DB
+## SavedVariablesPerCharacter:
+
+Load.xml
+
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

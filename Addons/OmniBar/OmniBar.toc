@@ -1,0 +1,21 @@
+## Interface: 100002
+## Title: OmniBar
+## Notes: Tracks enemy cooldowns
+## Version: v14.2
+## Author: Jordon
+## SavedVariables: OmniBarDB
+## X-Curse-Project-ID: 85814
+## X-Wago-ID: BO678XK3
+## X-WoWI-ID: 23235
+
+
+Locales\Locales.xml
+OmniBar.xml
+OmniBar_Mainline.lua
+OmniBar.lua
+Options.lua
+
+## Title: |cff880303[163UI]|r OmniBar
+## Title-zhCN: |cff880303[有爱]|r OmniBar 敌方冷却监控
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

@@ -1,0 +1,34 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <!-- <Script file="163UI_Quest.lua"/> -->
+    <Script file="AlreadyKnown.lua"/>
+    <Script file="CloudyTradeSkill.lua"/>
+    <Script file="CopyFriendList.lua"/>
+    <Script file="ExtraActionButton.lua"/>
+    <!-- <Script file="FriendsGuildTab.lua"/> -->
+    <Script file="GuildRosterButtons.lua"/>
+    <Script file="MailFrame.lua"/>
+    <Script file="MerchantFilterButtons.lua"/>
+    <Script file="PingPing.lua"/>
+    <!-- <Script file="ProfessionTabs.lua"/> -->
+    <Script file="QuestFont.lua"/>
+    <Script file="SlashCommands.lua"/>
+    <Script file="FiveCombo.lua"/>
+    <Script file="GarrisonMinimapButton.lua"/>
+    <Script file="DeclineInvitation.lua"/>
+    <!-- <Script file="SoulbindsTalents.lua"/> -->
+    <Script file="CastingFrame.lua"/>
+
+    <Script file="7.0\CompletedTip.lua"/>
+    <Script file="7.0\FixArchievementUIFreeze.lua"/>
+    <Script file="7.0\SpecSwitchButtons.lua"/>
+    <Script file="7.0\ReplaceTalentSpell.lua"/>
+    <Script file="7.0\BattlePetCurrentStats.lua"/>
+    <Script file="7.0\EncounterJournalPlus_InstanceInfo.lua"/>
+    <Script file="7.0\HideQuickJoin.lua"/>
+    <!-- <Script file="7.0\ExaltedPlus.lua"/> -->
+
+
+</Ui>
+

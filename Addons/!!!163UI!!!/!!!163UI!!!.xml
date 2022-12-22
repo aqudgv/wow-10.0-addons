@@ -1,0 +1,77 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+    <!-- #file order is very important: DEBUG > Core > RunFirst > AceEvent > 163UI -->
+
+    <!-- #U1DBG 23K, U1DB.addons=25K, configs=3K, tags=2K, frames=3K, -->
+
+    <Include file="Deprecated\Deprecated.xml"/>
+
+    <Script file="SoundKitMap.lua"/>
+    <Script file="RunFirst.lua"/>
+
+    <Script file="locale.en.lua"/>
+    <Script file="locale.cn.lua"/>
+    <Script file="locale.tw.lua"/>
+
+    <!-- #273K -->
+    <Include file="Libs\CoreLibs.xml"/>
+    <Include file="Core\copy\copy.xml"/>
+    <Script file="Core\Core.lua"/>
+    <Include file="Core\UI\UI.xml"/>
+
+    <!-- <Script file="ResetApis.lua"/> -->
+    <!-- <Script file="ResetApis.lua"/> --> <!-- do not need now -->
+
+    <!-- #4K -->
+    <Script file="RunSecond.lua"/>
+
+    <!-- #非UI部分587K -->
+
+    <!-- #32K -->
+    <Script file="Pinyin.lua"/>
+
+    <!-- #273K -->
+    <Script file="163UI.lua"/>
+
+    <Script file="Tags.lua"/>
+
+    <!-- #27K 必须在Configs之前调用，因为要U1_MMBAddDefaultCollect -->
+    <Script file="Minimap.lua"/>
+
+    <!-- #259K -->
+    <Script file="Configs\Cfg!!!163UI!!!.lua"/>
+    <Include file="Configs\Configs.xml"/>
+    <Script file="ConfigsLoaded.lua"/>
+
+    <!-- #UI部分277K -->
+
+    <!-- #50K -->
+    <Include file="Controls\Controls.xml"/>
+    <!-- #0K -->
+    <Include file="163UIUI.xml"/>
+    <!-- #84K, with minimap 140 -->
+    <Script file="QuickMenus.lua"/>
+    <Script file="163UIUI.lua"/>
+
+    <!-- #其他 -->
+    <Script file="Profiles.lua"/>
+    <Script file="ProfilesUI.lua"/>
+
+    <Script file="RunLast.lua"/>
+
+    <Script file="PluginCore\BlizzBugsSuck.lua"/>
+    <Script file="PluginCore\MasqueDummy.lua"/>
+    <Script file="..\!!!Libs\LibSharedMedia-3.0\LibSharedMedia-3.0.lua"/>
+    <Script file="PluginCore\SharedMedia.lua"/>
+    <Script file="..\!!!Libs\LibItemUpgradeInfo-1.0\Core.lua"/>
+    <Script file="PluginCore\InventoryLevel.lua"/>
+
+    <Include file="Misc\Misc.xml"/>
+
+    <Include file="Guide\Guide.xml"/>
+
+    <Include file="External\External.xml"/>
+
+</Ui>
+

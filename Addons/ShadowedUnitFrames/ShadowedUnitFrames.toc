@@ -1,0 +1,63 @@
+## Interface: 100002
+## Title: Shadowed Unit Frames
+## Notes: Moooooooooooooooooo
+## Author: Shadowed
+## Version: v4.4.2
+## SavedVariables: ShadowedUFDB
+## X-Website: https://www.wowace.com/addons/shadowed-unit-frames/
+## OptionalDeps: Ace3, LibSharedMedia-3.0, AceGUI-3.0-SharedMediaWidgets, LibDualSpec-1.0, LibSpellRange-1.0, UTF8, Clique
+## X-Curse-Project-ID: 19268
+## X-WoWI-ID: 13494
+
+#@no-lib-strip@
+libs\LibSpellRange-1.0\LibSpellRange-1.0.lua
+#@end-no-lib-strip@
+
+localization\enUS.lua
+localization\zhCN.lua
+localization\zhTW.lua
+
+ShadowedUnitFrames.xml
+ShadowedUnitFrames.lua
+modules\helpers.lua
+modules\units.lua
+modules\layout.lua
+modules\movers.lua
+modules\defaultlayout.lua
+modules\highlight.lua
+modules\tags.lua
+modules\health.lua
+modules\power.lua
+modules\portrait.lua
+modules\indicators.lua
+modules\xp.lua
+modules\cast.lua
+modules\auras.lua
+modules\auraindicators.lua
+modules\combattext.lua
+modules\totems.lua
+modules\runes.lua
+modules\fader.lua
+modules\basecombopoints.lua
+modules\combopoints.lua
+modules\incheal.lua
+modules\incabsorb.lua
+modules\healabsorb.lua
+modules\range.lua
+modules\empty.lua
+modules\druid.lua
+modules\soulshards.lua
+modules\holypower.lua
+modules\chi.lua
+modules\altpower.lua
+modules\monkstagger.lua
+modules\aurapoints.lua
+modules\priest.lua
+modules\shaman.lua
+modules\arcanecharges.lua
+modules\essence.lua
+
+## Title: |cff880303[163UI]|r ShadowedUnitFrames
+## Title-zhCN:  |cff880303[有爱]|r SUF 头像增强
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

@@ -1,0 +1,15 @@
+<Ui xmlns:xsi="" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+    <Include file="Libs\Libs.xml"/>
+    <!-- <Include file="Localization\Localization.xml" /> -->
+    <Script file="Data.lua"/>
+    <Script file="API.lua"/>
+    <Script file="Addon.lua"/>
+    <Include file="UI\Template.xml"/>
+    <Script file="UI\QuestItem.lua"/>
+    <Script file="UI\TreeView.lua"/>
+    <Script file="UI\TabView.lua"/>
+    <Script file="UI\MainPanel.lua"/>
+    <Script file="UI\ItemItem.lua"/>
+    <Script file="UI\ItemFrame.lua"/>
+</Ui>

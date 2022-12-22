@@ -1,0 +1,13 @@
+## Interface: 100002
+## Title: GladiatorlosSA_zhCN(Yike_Xia)
+## Title-zhCN:GladiatorlosSA_夏一可语音包
+## Title-zhTW:GladiatorlosSA_夏一可語音包
+## Notes: GSA plugin for Chinese voice set
+## Author: Yike Xia, Mini_Dragon
+## Version: 20221117
+
+GladiatorlosSA_zhCN.lua
+## Title: |cff880303[163UI]|r GladiatorlosSA_zhCN
+## Title-zhCN: |cff880303[有爱]|r Gladiator 中文包
+## X-Vendor: NetEase
+## X-163UI-Version: 20221121172401

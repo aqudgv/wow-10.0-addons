@@ -1,0 +1,23 @@
+## Interface: 100002
+## Title: GladiatorlosSA
+## Notes: PvP Sound Alerter
+## Author: xGrit
+## SavedVariables: GladiatorlosSADB
+## Version: 4.0
+
+embeds.xml
+Locales\locales.xml
+
+GladiatorlosSA2.lua
+spelllist.lua
+options.lua
+
+ClassicEra\options_TBC.lua
+ClassicEra\spelllist_TBC.lua
+ClassicEra\options_WLK.lua
+ClassicEra\spelllist_WLK.lua
+
+## Title: |cff880303[163UI]|r GladiatorlosSA2
+## Title-zhCN: |cff880303[有爱]|r Gladiator PVP语音提示
+## X-Vendor: NetEase
+## X-163UI-Version: 20221128165246

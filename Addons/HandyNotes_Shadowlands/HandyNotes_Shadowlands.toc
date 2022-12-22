@@ -1,0 +1,17 @@
+## Interface: 100002
+## Title: HandyNotes: Shadowlands
+## Version: 51
+## Notes: Shadowlands Notes
+## OptionalDeps: Ace3
+## RequiredDeps: HandyNotes
+## X-Embeds: Ace3
+## SavedVariables: HandyNotes_ShadowlandsDB
+
+embeds.xml
+core\core.xml
+plugin.xml
+
+## Title: |cff880303[163UI]|r HandyNotes_Shadowlands
+## Title-zhCN: |cff880303[有爱]|r HandyNotes 暗影国度稀有和宝箱
+## X-Vendor: NetEase
+## X-163UI-Version: 20221216164606

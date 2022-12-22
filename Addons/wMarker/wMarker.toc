@@ -1,0 +1,20 @@
+## Interface: 100002
+## Title: |cffe1a500w|cff69ccf0Marker
+## Notes: I'm going to to get my engineers to invent a combustible lemon that burns your house down! Now with profiles!
+## Author: Waky
+## Dependencies: 
+## Version: 3.0.5
+## SavedVariables: wMarkerAceDB
+## SavedVariablesPerCharacter: wMarkerDB, wFlaresDB
+
+Localization\enUS.lua
+Localization\zhCN.lua
+Localization\zhTW.lua
+
+wMarker.lua
+config.lua
+## Title: |cff880303[163UI]|r wMarker
+## Title-zhCN: |cff880303[有爱]|r wMarker 标记助手
+## Notes-zhCN: 在界面上显示标记按钮和世界标记按钮
+## X-Vendor: NetEase
+## X-163UI-Version: 20221216164606

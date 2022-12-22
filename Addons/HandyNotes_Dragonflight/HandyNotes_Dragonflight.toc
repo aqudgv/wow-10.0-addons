@@ -1,0 +1,17 @@
+## Interface: 100002
+## Title: HandyNotes: Dragonflight
+## Version: 22
+## Notes: Dragonflight Notes
+## OptionalDeps: Ace3
+## RequiredDeps: HandyNotes
+## X-Embeds: Ace3
+## SavedVariables: HandyNotes_DragonflightDB
+
+embeds.xml
+core\core.xml
+plugin.xml
+
+## Title: |cff880303[163UI]|r HandyNotes_Dragonflight
+## Title-zhCN: |cff880303[有爱]|r HandyNotes 巨龙时代
+## X-Vendor: NetEase
+## X-163UI-Version: 20221216164606
